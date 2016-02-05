@@ -22,12 +22,16 @@ Route::group(['prefix' => 'api/v0.1'], function() {
         return Response::json(["response" => "OK"]);
     });
 
+    Route::get('/docs', function() {
+        return view('docs');
+    });
+
     // User Management Routes
     Route::get('/user/login', "UserManagementController@loginUser");
     Route::post('/user/register', "UserManagementController@registerUser");
     Route::group(['middleware' => ['customauth']], function() {
-        Route::patch('/user/edit', "UserManagementController@editUser");
-        Route::put('/user/password', "UserManagementController@changePassword");
+        Route::put('/user/edit', "UserManagementController@editUser");
+        Route::patch('/user/password', "UserManagementController@changePassword");
         Route::delete('/user/delete', "UserManagementController@deleteUser");
     });
 

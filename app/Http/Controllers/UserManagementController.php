@@ -68,11 +68,11 @@ class UserManagementController extends Controller
                 $user = User::create(array(
                     "name" => $request->name,
                     "email" => $request->email,
-                    "password" => md5($request->password),
                     "role" => (int) $request->role,
                     "user_token" => md5($request->email . time()),
                     "active" => 1
                 ));
+                $user->password = md5($request->password);
                 $user->save();
                 return Response::json([
                     "status" => "OK",
