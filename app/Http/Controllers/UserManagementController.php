@@ -38,7 +38,10 @@ class UserManagementController extends Controller
                 return Response::json([
                     "status" => "OK",
                     "respose" => "Login succeeded.",
-                    "message" => $user
+                    "message" => [
+                        'user' => $user,
+                        'token' => $user->user_token
+                    ]
                 ]);
             }
         }
@@ -77,7 +80,10 @@ class UserManagementController extends Controller
                 return Response::json([
                     "status" => "OK",
                     "response" => "Registration succeeded.",
-                    "message" => $user
+                    "message" => [
+                        'user' => $user,
+                        'token' => $user->user_token
+                    ]
                 ]);
             }
         }

@@ -15,7 +15,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'active', 'role', 'user_token'
+        'name', 'email', 'active', 'role'
     ];
 
     /**
@@ -24,10 +24,10 @@ class User extends Model
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'user_token'
     ];
 
     protected $guarded = [
-        'password'
+        'password', 'remember_token', 'user_token', 'id'
     ];
 }
