@@ -15,9 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function() {
-    return Response::json(["response" => "Hello, Nick!"]);
+Route::group(['prefix' => 'api/v0.1'], function() {
+
+    // Make sure the API is working.
+    Route::get('/heartbeat', function() {
+        return Response::json(["response" => "OK"]);
+    });
+
+    // User Management Routes
+    Route::get('/user/login', "UserManagementController@loginUser");
+    Route::post('/user/register', "UserManagementController@registerUser");
+    Route::group(['middleware' => ['customauth']], function() {
+        Route::patch('/user/edit', "UserManagementController@editUser");
+        Route::put('/user/password', "UserManagementController@changePassword");
+        Route::delete('/user/delete', "UserManagementController@deleteUser");
+    });
+
 });
+
+
 
 /*
 |--------------------------------------------------------------------------
