@@ -23,7 +23,7 @@ Route::group(['prefix' => 'api/v0.1'], function() {
     });
 
     Route::get('/docs', function() {
-        return view('docs');
+        return view('docs', ['users' => App\User::all()]);
     });
 
     // User Management Routes

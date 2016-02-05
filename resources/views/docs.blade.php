@@ -4,8 +4,8 @@
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <meta http-equiv="cache-control" content="no-cache">
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-      <meta name="author" content="Elemental Path" />
-      <meta name="description" content="RiveScript UI" />
+      <meta name="author" content="Jay Ravaliya" />
+      <meta name="description" content="CS 656 - IHLP Project" />
       <meta name="keywords"  content="" />
       <meta name="Resource-type" content="Document" />
       
@@ -26,6 +26,10 @@
       {
         font-weight: bold;
         text-align: left;
+      }
+      table
+      {
+        table-layout: fixed;
       }
       </style>
 
@@ -50,6 +54,33 @@
         <div class="row">
 
           <div class="col-xs-10 col-xs-offset-1">
+
+            <!-- The Basics -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">The Basics</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped">
+                  <tr>
+                    <th>Route</th>
+                    <th>HTTP Method</th>
+                    <th>Required Parameters</th>
+                    <th>Optional Parameters</th>
+                    <th>Protected?*</th>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/heartbeat</td>
+                    <td>GET</td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>NO</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <!-- User Management -->
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">User Management</h3>
@@ -103,12 +134,32 @@
                     <td>YES</td>
                   </tr>
                 </table>
-                *
-              </div><!-- .panel-body -->
-            </div><!-- .panel -->
+                <div class="well well-sm">
+                  <h3 class="header">Current Users <small>{{{ count($users) }}} total user(s)</small></h3>
+                  @foreach($users as $user)
+                    <code>{{{ $user }}}</code>
+                  @endforeach
+                </div>
+              </div>
+            </div>
 
-
-            
+            <!-- Documentation Key -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Documentation Key</h3>
+              </div>
+              <div class="panel-body">
+                <div class="well well-sm">
+                  <strong>* Protected:</strong> Any route where "Protected?" is "YES" must include an HTTP Parameter "token" which is returned to the client when a user logs in.<br />
+                  <strong>** For all roles:</strong>
+                  <ul>
+                    <li>1 = Recruiter</li>
+                    <li>2 = Student</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+                              
         </div><!-- .col-xs-8 -->
       </div><!-- .row -->
     </div><!-- .container -->
