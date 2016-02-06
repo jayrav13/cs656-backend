@@ -8,13 +8,34 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Response;
 use App\User;
+use App\Company;
+use Schema;
 
 class UserManagementController extends Controller
 {
+
+    /*
+     *  Private function that attempts to create a new table if needed.
+     */
+    public function newReturningCompany($companyName) {
+        $company = Company::where('simple_name', strtolower(str_replace(" ", "_", $companyName)));
+        if($company) {
+            return $company;
+        }
+        else {
+            Company::create([
+                'company_name' => $companyName,
+                'simple_name' => strtolower(str_replace(" ", "_", $companyName));
+            ]);
+            return $company;
+        }
+    }
     /*
      *  User login.
      */
     public function loginUser(Request $request) {
+
+        // Reject if email and password are not provided.
         if(!$request->email || !$request->password) {
             return Response::json([
                 "status" => "ERROR", 
@@ -24,6 +45,7 @@ class UserManagementController extends Controller
         }
         else {
             $user = User::where('email', $request->email)->where('password', md5($request->password))->first();
+            // Reject if authentication fails.
             if(!$user) {
                 return Response::json([
                     "status" => "OK",
@@ -31,6 +53,7 @@ class UserManagementController extends Controller
                     "message" => "Invalid credentials."
                 ]);
             }
+            // Authentication success. Set new token and activate user.
             else {
                 $user->user_token = md5($user->email . time());
                 $user->active = 1;
@@ -40,6 +63,7 @@ class UserManagementController extends Controller
                     "respose" => "Login succeeded.",
                     "message" => [
                         'user' => $user,
+                        // Token is guarded, only made available to client during login and registration.
                         'token' => $user->user_token
                     ]
                 ]);
@@ -51,6 +75,7 @@ class UserManagementController extends Controller
      *  Create a new user.
      */
     public function registerUser(Request $request) {
+        // Reject if name, email, password and role are not provided.
         if(!$request->name || !$request->email || !$request->password || !$request->role) {
             return Response::json([
                 "status" => "ERROR", 
@@ -60,6 +85,7 @@ class UserManagementController extends Controller
         }
         else {
             $user = User::where('email', $request->email)->first();
+            // Reject if username is taken.
             if($user) {
                 return Response::json([
                     "status" => "OK",
@@ -67,21 +93,31 @@ class UserManagementController extends Controller
                     "message" => "An account under this email address has already been created." 
                 ]);
             }
+            // Creation success. Create user. Encrypt token and password.
             else {
                 $user = User::create(array(
                     "name" => $request->name,
                     "email" => $request->email,
                     "role" => (int) $request->role,
-                    "user_token" => md5($request->email . time()),
                     "active" => 1
                 ));
+                $user->user_token = md5($request->email . time());
                 $user->password = md5($request->password);
+
+                // Check if company was provided.
+                if($request->company && strlen($request->company) > 0) {
+                    $company = $this->newReturningCompany($request->company);
+                    $user->company_id = $company->id;
+                }
+
+                // Save user, reply.
                 $user->save();
                 return Response::json([
                     "status" => "OK",
                     "response" => "Registration succeeded.",
                     "message" => [
                         'user' => $user,
+                        // Token is guarded, only made available to client during login and registration.
                         'token' => $user->user_token
                     ]
                 ]);
@@ -96,6 +132,11 @@ class UserManagementController extends Controller
         $user = User::where('user_token', $request->token)->first();
         $user->update($request->all());
         $user->save();
+
+        if($request->company && strlen($request->company) > 0) {
+            $this->createNewCompanyTable($request->company);
+        }
+
         return Response::json([
             "status" => "OK",
             "response" => "User data updated.",
@@ -134,8 +175,10 @@ class UserManagementController extends Controller
         $user->delete();
         return Response::json([
             "status" => "OK",
-            "response" => "Delete success",
+            "response" => "Delete success.",
             "message" => "User has been deleted."
         ]);
     }
+
+
 }

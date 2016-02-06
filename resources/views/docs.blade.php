@@ -137,7 +137,7 @@
                 <div class="well well-sm">
                   <h3 class="header">Current Users <small>{{{ count($users) }}} total user(s)</small></h3>
                   @foreach($users as $user)
-                    <code>{{{ $user }}}</code>
+                    <code>{{{ $user }}}</code><br />
                   @endforeach
                 </div>
               </div>
