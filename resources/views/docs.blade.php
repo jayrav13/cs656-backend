@@ -107,16 +107,20 @@
                     <td class="route">/api/v0.1/user/register</td>
                     <td>POST</td>
                     <td>
-                      name<br />email<br />password<br />role**
+                      name<br />email<br />password
                     </td>
-                    <td>---</td>
+                    <td>
+                      company<br />twitter<br />linkedin<br />resume<br />website
+                    </td>
                     <td>NO</td>
                   </tr>
                   <tr>
                     <td class="route">/api/v0.1/user/edit</td>
                     <td>PUT</td>
                     <td>---</td>
-                    <td>name<br />email<br />role**</td>
+                    <td>
+                      name<br />email<br />company<br />twitter<br />linkedin<br />resume<br />website
+                    </td>
                     <td>YES</td>
                   </tr>
                   <tr>
@@ -127,7 +131,7 @@
                     <td>YES</td>
                   </tr>
                   <tr>
-                    <td class="route">/api/v0.1/user/delete</td>
+                    <td class="route">/api/v0.1/user/deactivate</td>
                     <td>DELETE</td>
                     <td>---</td>
                     <td>---</td>
@@ -137,7 +141,45 @@
                 <div class="well well-sm">
                   <h3 class="header">Current Users <small>{{{ count($users) }}} total user(s)</small></h3>
                   @foreach($users as $user)
-                    <code>{{{ $user }}}</code><br />
+                    <code>{{{ $user }}}</code><br /><br />
+                  @endforeach
+                </div>
+              </div>
+            </div>
+
+            <!-- Companies -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Companies</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped">
+                  <tr>
+                    <th>Route</th>
+                    <th>HTTP Method</th>
+                    <th>Required Parameters</th>
+                    <th>Optional Parameters</th>
+                    <th>Protected?*</th>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/company/companies</td>
+                    <td>GET</td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/company/recruiters</td>
+                    <td>GET</td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                </table>
+                <div class="well well-sm">
+                  <h3 class="header">Current Companies (w/recruiters) <small>{{{ count($companies) }}} total companies</small></h3>
+                  @foreach($companies as $company)
+                  <code>{{{ $company }}}</code><br /><br />
                   @endforeach
                 </div>
               </div>
@@ -151,10 +193,9 @@
               <div class="panel-body">
                 <div class="well well-sm">
                   <strong>* Protected:</strong> Any route where "Protected?" is "YES" must include an HTTP Parameter "token" which is returned to the client when a user logs in.<br />
-                  <strong>** For all roles:</strong>
+                  <h5 class="header">Resources</h5>
                   <ul>
-                    <li>1 = Recruiter</li>
-                    <li>2 = Student</li>
+                    <li>Check out <a href="http://jsonprettyprint.com" target="_BLANK">JSON Pretty Print</a> if the objects on the HTML page are hard to read</li>
                   </ul>
                 </div>
               </div>

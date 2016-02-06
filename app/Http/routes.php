@@ -23,7 +23,7 @@ Route::group(['prefix' => 'api/v0.1'], function() {
     });
 
     Route::get('/docs', function() {
-        return view('docs', ['users' => App\User::all()]);
+        return view('docs', ['users' => App\User::all(), 'companies' => App\Company::with('user')->get()]);
     });
 
     // User Management Routes
@@ -32,8 +32,16 @@ Route::group(['prefix' => 'api/v0.1'], function() {
     Route::group(['middleware' => ['customauth']], function() {
         Route::put('/user/edit', "UserManagementController@editUser");
         Route::patch('/user/password', "UserManagementController@changePassword");
-        Route::delete('/user/delete', "UserManagementController@deleteUser");
+        Route::delete('/user/deactivate', "UserManagementController@deactivateUser");
     });
+
+    // Company Routes
+    Route::group(['middleware' => ['customauth']], function() {
+        Route::get('/company/companies', "CompanyController@companies");
+        Route::get('/company/recruiters', "CompanyController@recruiters");
+    });
+
+    // Relationship Routes
 
 });
 

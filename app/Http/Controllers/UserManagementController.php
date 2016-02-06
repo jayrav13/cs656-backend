@@ -18,14 +18,14 @@ class UserManagementController extends Controller
      *  Private function that attempts to create a new table if needed.
      */
     public function newReturningCompany($companyName) {
-        $company = Company::where('simple_name', strtolower(str_replace(" ", "_", $companyName)));
+        $company = Company::where('simple_name', strtolower(str_replace(" ", "_", $companyName)))->first();
         if($company) {
             return $company;
         }
         else {
-            Company::create([
+            $company = Company::create([
                 'company_name' => $companyName,
-                'simple_name' => strtolower(str_replace(" ", "_", $companyName));
+                'simple_name' => strtolower(str_replace(" ", "_", $companyName))
             ]);
             return $company;
         }
@@ -44,7 +44,7 @@ class UserManagementController extends Controller
             ]);
         }
         else {
-            $user = User::where('email', $request->email)->where('password', md5($request->password))->first();
+            $user = User::where('email', $request->email)->where('password', md5($request->password))->with('company')->first();
             // Reject if authentication fails.
             if(!$user) {
                 return Response::json([
@@ -60,11 +60,11 @@ class UserManagementController extends Controller
                 $user->save();
                 return Response::json([
                     "status" => "OK",
-                    "respose" => "Login succeeded.",
+                    "response" => "Login succeeded.",
                     "message" => [
                         'user' => $user,
                         // Token is guarded, only made available to client during login and registration.
-                        'token' => $user->user_token
+                        'token' => $user->user_token,
                     ]
                 ]);
             }
@@ -76,11 +76,11 @@ class UserManagementController extends Controller
      */
     public function registerUser(Request $request) {
         // Reject if name, email, password and role are not provided.
-        if(!$request->name || !$request->email || !$request->password || !$request->role) {
+        if(!$request->name || !$request->email || !$request->password) {
             return Response::json([
                 "status" => "ERROR", 
                 "response" => "Registration failed.",
-                "message" => "Required information (name, email, password, role) not provided."
+                "message" => "Required information (name, email, password) not provided."
             ]);
         }
         else {
@@ -134,7 +134,8 @@ class UserManagementController extends Controller
         $user->save();
 
         if($request->company && strlen($request->company) > 0) {
-            $this->createNewCompanyTable($request->company);
+            $company = $this->newReturningCompany($request->company);
+            $user->company_id = $company->id;
         }
 
         return Response::json([
@@ -170,13 +171,14 @@ class UserManagementController extends Controller
     /*
      *  Delete user.
      */
-    public function deleteUser(Request $request) {
+    public function deactivateUser(Request $request) {
         $user = User::where('user_token', $request->token)->first();
-        $user->delete();
+        $user->active = 0;
+        $user->save();
         return Response::json([
             "status" => "OK",
-            "response" => "Delete success.",
-            "message" => "User has been deleted."
+            "response" => "Deactivate success.",
+            "message" => "User has been deactivated. To reactivate, simply log in with your original credentials."
         ]);
     }
 

@@ -12,5 +12,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserTableSeeder::class);
+        App\User::unguard();
+        App\Company::unguard();
+
+        // $this->call(CompanyTableSeeder::class);
+        $this->call(UserTableSeeder::class);
+
+        App\Company::reguard();
+        App\User::reguard();
+
     }
 }

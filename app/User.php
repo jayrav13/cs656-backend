@@ -15,7 +15,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'active', 'role'
+        'name', 'email', 'active', 'company_id', 'twitter', 'linkedin', 'website', 'resume' 
     ];
 
     /**
@@ -32,6 +32,15 @@ class User extends Model
     ];
 
     public function company() {
-        return $this->belongsTo('App\Company');
+        return $this->belongsTo('App\Company', 'company_id');
     }
+
+    public function recruitersConnected() {
+        return $this->belongsToMany('App\User', 'student_recruiter', 'student_id', 'recruiter_id');
+    }
+
+    public function studentsConnected() {
+        return $this->belongsToMany('App\User', 'student_recruiter', 'recruiter_id', 'student_id');
+    }
+
 }

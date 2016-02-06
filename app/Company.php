@@ -17,7 +17,7 @@ class Company extends Model
         'id', 'created_at', 'updated_at'
     ];
 
-    public function users() {
+    public function user() {
         return $this->hasMany('App\User');
     }
 }
