@@ -13,13 +13,13 @@ class RemoveRoleAddSocialUsers extends Migration
     public function up()
     {
         //
-        /*Schema::table('users', function($table) {
-            // $table->dropColumn('role');
+        Schema::table('users', function($table) {
+            $table->dropColumn('role');
             $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('resume')->nullable();
             $table->string('website')->nullable();
-        });*/
+        });
     }
 
     /**
@@ -30,11 +30,12 @@ class RemoveRoleAddSocialUsers extends Migration
     public function down()
     {
         //
-        /*Schema::table('users', function($table) {
+        Schema::table('users', function($table) {
+            $table->integer('role')->unsigned();
             $table->dropColumn('twitter');
             $table->dropColumn('linkedin');
             $table->dropColumn('resume');
             $table->dropColumn('website');
-        });*/
+        });
     }
 }
