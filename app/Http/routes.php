@@ -42,7 +42,9 @@ Route::group(['prefix' => 'api/v0.1'], function() {
     });
 
     // Relationship Routes
-
+    Route::group(['middleware' => ['customauth']], function() {
+        Route::get('/relationship/list', "RelationshipController@connectionsList");
+    });
 });
 
 
