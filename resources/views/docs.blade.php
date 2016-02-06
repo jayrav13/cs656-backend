@@ -131,6 +131,13 @@
                     <td>YES</td>
                   </tr>
                   <tr>
+                    <td class="route">/api/v0.1/user/logout</td>
+                    <td>POST</td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
                     <td class="route">/api/v0.1/user/deactivate</td>
                     <td>DELETE</td>
                     <td>---</td>
@@ -139,7 +146,7 @@
                   </tr>
                 </table>
                 <div class="well well-sm">
-                  <h3 class="header">Current Users <small>{{{ count($users) }}} total user(s)</small></h3>
+                  <h3 class="header">Current Users** <small>{{{ count($users) }}} total user(s)</small></h3>
                   @foreach($users as $user)
                     <code>{{{ $user }}}</code><br /><br />
                   @endforeach
@@ -185,6 +192,38 @@
               </div>
             </div>
 
+            <!-- Relationships -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">User Relationships</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped">
+                  <tr>
+                    <th>Route</th>
+                    <th>HTTP Method</th>
+                    <th>Required Parameters</th>
+                    <th>Optional Parameters</th>
+                    <th>Protected?*</th>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/relationship/list</td>
+                    <td>GET</td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/relationship/add</td>
+                    <td>POST</td>
+                    <td>connection_token+</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
             <!-- Documentation Key -->
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -193,9 +232,12 @@
               <div class="panel-body">
                 <div class="well well-sm">
                   <strong>* Protected:</strong> Any route where "Protected?" is "YES" must include an HTTP Parameter "token" which is returned to the client when a user logs in.<br />
+                  <strong>** Student vs Recruiter:</strong> A student is defined by anyone whose "company_id" field is NULL. As in, the client will not have allowed them to populate "company" in the /user/register or /user/edit routes.<br />
+                  <strong>+ connection_token:</strong> Currently, the API only supports student to recruiter connection. See above for what constitutes a student or a recruiter.
                   <h5 class="header">Resources</h5>
                   <ul>
                     <li>Check out <a href="http://jsonprettyprint.com" target="_BLANK">JSON Pretty Print</a> if the objects on the HTML page are hard to read</li>
+                    <li>Check out <a href="https://www.getpostman.com/" target="_BLANK">Postman</a> to test the API with HTTP Requests.</li>
                   </ul>
                 </div>
               </div>

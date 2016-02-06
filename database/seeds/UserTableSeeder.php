@@ -42,9 +42,9 @@ class UserTableSeeder extends Seeder
             'name' => "Dhruva Patel",
             'email' => 'dtp22@njit.edu',
             'password' => md5('testing'),
-            'active' => 3,
+            'active' => 1,
             'user_token' => md5(str_random(10) . time()),
-            'company_id' => 1,
+            'company_id' => 3,
             'twitter' => 'dtp22',
             'linkedin' => 'dtp22',
             'resume' => 'http://google.com.com'
@@ -54,9 +54,9 @@ class UserTableSeeder extends Seeder
             'name' => "Ajit Puthenputhussery",
             'email' => 'avp38@njit.edu',
             'password' => md5('testing'),
-            'active' => 4,
+            'active' => 1,
             'user_token' => md5(str_random(10) . time()),
-            'company_id' => 1,
+            'company_id' => 4,
             'linkedin' => 'avp38',
             'resume' => 'http://google.com',
             'website' => 'http://google.com'

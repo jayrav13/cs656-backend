@@ -27,23 +27,28 @@ Route::group(['prefix' => 'api/v0.1'], function() {
     });
 
     // User Management Routes
-    Route::get('/user/login', "UserManagementController@loginUser");
-    Route::post('/user/register', "UserManagementController@registerUser");
-    Route::group(['middleware' => ['customauth']], function() {
-        Route::put('/user/edit', "UserManagementController@editUser");
-        Route::patch('/user/password', "UserManagementController@changePassword");
-        Route::delete('/user/deactivate', "UserManagementController@deactivateUser");
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/login', "UserManagementController@loginUser");
+        Route::post('/register', "UserManagementController@registerUser");
+        Route::group(['middleware' => ['customauth']], function() {
+            Route::put('/edit', "UserManagementController@editUser");
+            Route::patch('/password', "UserManagementController@changePassword");
+            Route::post('/logout', "UserManagementController@logoutUser");
+            Route::delete('/deactivate', "UserManagementController@deactivateUser");
+        });
     });
+    
 
     // Company Routes
-    Route::group(['middleware' => ['customauth']], function() {
-        Route::get('/company/companies', "CompanyController@companies");
-        Route::get('/company/recruiters', "CompanyController@recruiters");
+    Route::group(['middleware' => ['customauth'], 'prefix' => 'company'], function() {
+        Route::get('/companies', "CompanyController@companies");
+        Route::get('/recruiters', "CompanyController@recruiters");
     });
 
     // Relationship Routes
-    Route::group(['middleware' => ['customauth']], function() {
-        Route::get('/relationship/list', "RelationshipController@connectionsList");
+    Route::group(['middleware' => ['customauth'], 'prefix' => 'relationship'], function() {
+        Route::get('/list', "RelationshipController@connectionsList");
+        Route::post('/add', "RelationshipController@addConnection");
     });
 });
 

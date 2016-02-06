@@ -182,5 +182,14 @@ class UserManagementController extends Controller
         ]);
     }
 
-
+    public function logoutUser(Request $request) {
+        $user = User::where('user_token', $request->token)->first();
+        $user->user_token = NULL;
+        $user->save();
+        return Response::json([
+            "status" => "OK",
+            "response" => "Logged out.",
+            "message" => "Logged out successfully."
+        ]);
+    }
 }

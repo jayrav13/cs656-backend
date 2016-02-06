@@ -14,7 +14,7 @@ class AddCompanyColumnToUsers extends Migration
     {
         //
         Schema::table('users', function($table) {
-            $table->integer('company_id')->unsigned()->nullable()->default(0);
+            $table->integer('company_id')->unsigned()->nullable();
             $table->foreign('company_id')->references('id')->on('company');
         });
     }
