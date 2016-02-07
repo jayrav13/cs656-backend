@@ -22,8 +22,8 @@ Route::group(['prefix' => 'api/v0.1'], function() {
         return Response::json(["response" => "OK"]);
     });
 
-    Route::get('/docs', function() {
-        return view('docs', ['users' => App\User::all(), 'companies' => App\Company::with('user')->get()]);
+    Route::get('/docs', function(Request $request) {
+        return view('docs', ['users' => App\User::all(), 'companies' => App\Company::with('user')->get(), 'request' => $request]);
     });
 
     // User Management Routes
@@ -43,6 +43,7 @@ Route::group(['prefix' => 'api/v0.1'], function() {
     Route::group(['middleware' => ['customauth'], 'prefix' => 'company'], function() {
         Route::get('/companies', "CompanyController@companies");
         Route::get('/recruiters', "CompanyController@recruiters");
+        Route::get('/search', "CompanyController@search");
     });
 
     // Relationship Routes

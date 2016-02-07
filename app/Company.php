@@ -10,7 +10,7 @@ class Company extends Model
     protected $table = 'company';
 
     protected $fillable = [
-        'company_name', 'simple_name'
+        'company_name'
     ];
 
     protected $guarded = [

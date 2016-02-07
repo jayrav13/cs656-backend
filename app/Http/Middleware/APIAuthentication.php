@@ -19,10 +19,10 @@ class APIAuthentication
     {
         if(!$request->has('token')) {
             return Response::json([
-                    "status" => "ERROR",
-                    "response" => "Authentication failed.",
-                    "message" => "Please authenticate the user to use this route by including the \"token\" HTTP parameter with your request."
-                ]);
+                "status" => "ERROR",
+                "response" => "Authentication failed.",
+                "message" => "Please authenticate the user to use this route by including the \"token\" HTTP parameter with your request."
+            ]);
         }
         else {
             $user = User::where('user_token', $request->token)->first();

@@ -31,6 +31,11 @@
       {
         table-layout: fixed;
       }
+      .scroll-section
+      {
+        max-height: 250px;
+        overflow: scroll;
+      }
       </style>
 
     </head>
@@ -54,6 +59,9 @@
         <div class="row">
 
           <div class="col-xs-10 col-xs-offset-1">
+            <div class="alert alert-info text-center" role="alert">
+              <h3 class="header">{{{ URL::to('/') }}} <small>Root URL</small></h3>
+            </div>
 
             <!-- The Basics -->
             <div class="panel panel-default">
@@ -110,7 +118,7 @@
                       name<br />email<br />password
                     </td>
                     <td>
-                      company<br />twitter<br />linkedin<br />resume<br />website
+                      company_id++
                     </td>
                     <td>NO</td>
                   </tr>
@@ -119,7 +127,7 @@
                     <td>PUT</td>
                     <td>---</td>
                     <td>
-                      name<br />email<br />company<br />twitter<br />linkedin<br />resume<br />website
+                      name<br />email<br />company_id++<br />twitter<br />linkedin<br />resume<br />website
                     </td>
                     <td>YES</td>
                   </tr>
@@ -145,7 +153,7 @@
                     <td>YES</td>
                   </tr>
                 </table>
-                <div class="well well-sm">
+                <div class="well well-sm scroll-section">
                   <h3 class="header">Current Users** <small>{{{ count($users) }}} total user(s)</small></h3>
                   @foreach($users as $user)
                     <code>{{{ $user }}}</code><br /><br />
@@ -182,8 +190,15 @@
                     <td>---</td>
                     <td>YES</td>
                   </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/company/search</td>
+                    <td>GET</td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
                 </table>
-                <div class="well well-sm">
+                <div class="well well-sm scroll-section">
                   <h3 class="header">Current Companies (w/recruiters) <small>{{{ count($companies) }}} total companies</small></h3>
                   @foreach($companies as $company)
                   <code>{{{ $company }}}</code><br /><br />
@@ -232,12 +247,13 @@
               <div class="panel-body">
                 <div class="well well-sm">
                   <strong>* Protected:</strong> Any route where "Protected?" is "YES" must include an HTTP Parameter "token" which is returned to the client when a user logs in.<br />
-                  <strong>** Student vs Recruiter:</strong> A student is defined by anyone whose "company_id" field is NULL. As in, the client will not have allowed them to populate "company" in the /user/register or /user/edit routes.<br />
-                  <strong>+ connection_token:</strong> Currently, the API only supports student to recruiter connection. See above for what constitutes a student or a recruiter.
+                  <strong>** Student vs Recruiter:</strong> A student is defined by anyone whose "role" field is 1. This can only be changed if the client changes this value to 2 via <code>/api/v0.1/user/register</code> or <code>/api/v0.1/user/edit</code> routes. Default value for all users is 1.<br />
+                  <strong>+ connection_token:</strong> Currently, the API only supports student to recruiter connection. See above for what constitutes a student or a recruiter.<br />
+                  <strong>++ company_id:</strong> Company ID will be made available through either the <code>/api/v0.1/company/companies</code> or <code>/api/v0.1/company/search</code> routes. The selection must be sent through as an ID.<br />
                   <h5 class="header">Resources</h5>
                   <ul>
-                    <li>Check out <a href="http://jsonprettyprint.com" target="_BLANK">JSON Pretty Print</a> if the objects on the HTML page are hard to read</li>
-                    <li>Check out <a href="https://www.getpostman.com/" target="_BLANK">Postman</a> to test the API with HTTP Requests.</li>
+                    <li>Check out <a href="http://jsonprettyprint.com" target="_BLANK">JSON Pretty Print</a> if the objects on the HTML page are hard to read.</li>
+                    <li>Check out <a href="https://www.getpostman.com/" target="_BLANK">Postman</a> or <a href="https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo?hl=en-US" target="_BLANK">Advanced REST Client</a> to test the API with HTTP Requests.</li>
                   </ul>
                 </div>
               </div>

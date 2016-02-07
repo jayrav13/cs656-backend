@@ -98,16 +98,20 @@ class UserManagementController extends Controller
                 $user = User::create(array(
                     "name" => $request->name,
                     "email" => $request->email,
-                    "role" => (int) $request->role,
                     "active" => 1
                 ));
                 $user->user_token = md5($request->email . time());
                 $user->password = md5($request->password);
 
                 // Check if company was provided.
-                if($request->company && strlen($request->company) > 0) {
-                    $company = $this->newReturningCompany($request->company);
-                    $user->company_id = $company->id;
+                if($request->company_id) {
+                    $user->company_id = $request->company_id;
+                    if($request->company_id > 0) {
+                        $user->role = 2;
+                    }
+                    else {
+                        $user->role = 1;
+                    }
                 }
 
                 // Save user, reply.
@@ -133,9 +137,15 @@ class UserManagementController extends Controller
         $user->update($request->all());
         $user->save();
 
-        if($request->company && strlen($request->company) > 0) {
-            $company = $this->newReturningCompany($request->company);
-            $user->company_id = $company->id;
+        // Check if company was provided.
+        if($request->company_id) {
+            $user->company_id = $request->company_id;
+            if($request->company_id > 0) {
+                $user->role = 2;
+            }
+            else {
+                $user->role = 1;
+            }
         }
 
         return Response::json([

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCompanyColumnToUsers extends Migration
+class AddRoleToCompanyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,9 @@ class AddCompanyColumnToUsers extends Migration
      */
     public function up()
     {
-        //
+        // Correction - this is to add role to USERS table!!!
         Schema::table('users', function($table) {
-            $table->integer('company_id')->unsigned()->nullable();
-            $table->foreign('company_id')->references('id')->on('company');
+            $table->integer('role')->unsigned()->default(1);
         });
     }
 
@@ -26,10 +25,9 @@ class AddCompanyColumnToUsers extends Migration
      */
     public function down()
     {
-        //
+        // Correction - this is to drop role from USERS table!!!
         Schema::table('users', function($table) {
-            $table->dropForeign('users_company_id_foreign');
-            $table->dropColumn('company_id');
+            $table->dropColumn('role');
         });
     }
 }
