@@ -41,7 +41,7 @@ class RelationshipController extends Controller
                 ]);
             }
             else {
-                if((!$this_user->company_id && !$connecting->company_id) || (is_integer($this_user->company_id) && is_integer($connecting->company_id))) {
+                if($this_user->role == $connecting->role) {
                     return Response::json([
                         "status" => "OK",
                         "response" => "Add Connection failed.",
@@ -51,19 +51,33 @@ class RelationshipController extends Controller
                 else {
                     // [Student, Recruiter]
                     $result = [0, 0];
-                    if(!$this_user->company_id) {
+
+                    if($this_user->role == 1) {
                         $result = [$this_user->id, $connecting->id];
                     }
                     else {
                         $result = [$connecting->id, $this_user->id];
                     }
-                    DB::insert('insert into student_recruiter (student_id, recruiter_id) values (?, ?)', $result);
 
-                    return Response::json([
-                        "status" => "OK",
-                        "response" => "Add Connection successful.",
-                        "message" => "Users have been successfully connected! Call /api/v0.1/relationship/list to get an updated list of relationships for this user."
-                    ]);
+                    $exists = DB::select("select * from student_recruiter where student_id = ? and recruiter_id = ?", $result);
+
+                    if(count($exists) > 0) {
+                        return Response::json([
+                            "status" => "OK",
+                            "response" => "Already a connection.",
+                            "message" => "You are already connected to this person! Call /api/v0.1/relationship/list to get an updated list of relationships for this user."
+                        ]);
+                    }
+                    else {
+                        DB::insert('insert into student_recruiter (student_id, recruiter_id) values (?, ?)', $result);
+                        return Response::json([
+                            "status" => "OK",
+                            "response" => "Add Connection successful.",
+                            "message" => "Users have been successfully connected! Call /api/v0.1/relationship/list to get an updated list of relationships for this user."
+                        ]);
+                    }
+
+                    
                 }
             }
         }
