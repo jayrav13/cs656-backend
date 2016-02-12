@@ -104,7 +104,7 @@
                   </tr>
                   <tr>
                     <td class="route">/api/v0.1/user/login</td>
-                    <td>GET</td>
+                    <td>POST</td>
                     <td>
                       email<br />password
                     </td>
@@ -246,7 +246,7 @@
               </div>
               <div class="panel-body">
                 <div class="well well-sm">
-                  <strong>* Protected:</strong> Any route where "Protected?" is "YES" must include an HTTP Parameter "token" which is returned to the client when a user logs in.<br />
+                  <strong>* Protected:</strong> Any route where "Protected?" is "YES" must include an HTTP Parameter "token" which is returned to the client when a user logs in or registers.<br />
                   <strong>** Student vs Recruiter:</strong> A student is defined by anyone whose "role" field is 1. This can only be changed if the client changes this value to 2 via <code>/api/v0.1/user/register</code> or <code>/api/v0.1/user/edit</code> routes. Default value for all users is 1.<br />
                   <strong>+ connection_token:</strong> Currently, the API only supports student to recruiter connection. See above for what constitutes a student or a recruiter.<br />
                   <strong>++ company_id:</strong> Company ID will be made available through either the <code>/api/v0.1/company/companies</code> or <code>/api/v0.1/company/search</code> routes. The selection must be sent through as an ID.<br />

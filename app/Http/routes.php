@@ -28,7 +28,7 @@ Route::group(['prefix' => 'api/v0.1'], function() {
 
     // User Management Routes
     Route::group(['prefix' => 'user'], function() {
-        Route::get('/login', "UserManagementController@loginUser");
+        Route::post('/login', "UserManagementController@loginUser");
         Route::post('/register', "UserManagementController@registerUser");
         Route::group(['middleware' => ['customauth']], function() {
             Route::put('/edit', "UserManagementController@editUser");
