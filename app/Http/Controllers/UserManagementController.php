@@ -13,23 +13,6 @@ use Schema;
 
 class UserManagementController extends Controller
 {
-
-    /*
-     *  Private function that attempts to create a new table if needed.
-     */
-    public function newReturningCompany($companyName) {
-        $company = Company::where('simple_name', strtolower(str_replace(" ", "_", $companyName)))->first();
-        if($company) {
-            return $company;
-        }
-        else {
-            $company = Company::create([
-                'company_name' => $companyName,
-                'simple_name' => strtolower(str_replace(" ", "_", $companyName))
-            ]);
-            return $company;
-        }
-    }
     /*
      *  User login.
      */
@@ -41,7 +24,7 @@ class UserManagementController extends Controller
                 "status" => "ERROR", 
                 "response" => "Login failed.",
                 "message" => "Required information (email, password) not provided."
-            ]);
+            ], 400);
         }
         else {
             $user = User::where('email', $request->email)->where('password', md5($request->password))->with('company')->first();
@@ -51,7 +34,7 @@ class UserManagementController extends Controller
                     "status" => "OK",
                     "response" => "Login failed.",
                     "message" => "Invalid credentials."
-                ]);
+                ], 400);
             }
             // Authentication success. Set new token and activate user.
             else {
@@ -66,7 +49,7 @@ class UserManagementController extends Controller
                         // Token is guarded, only made available to client during login and registration.
                         'token' => $user->user_token,
                     ]
-                ]);
+                ], 200);
             }
         }
     }
@@ -81,7 +64,7 @@ class UserManagementController extends Controller
                 "status" => "ERROR", 
                 "response" => "Registration failed.",
                 "message" => "Required information (name, email, password) not provided."
-            ]);
+            ], 400);
         }
         else {
             $user = User::where('email', $request->email)->first();
@@ -91,7 +74,7 @@ class UserManagementController extends Controller
                     "status" => "OK",
                     "response" => "Registration failed.",
                     "message" => "An account under this email address has already been created." 
-                ]);
+                ], 400);
             }
             // Creation success. Create user. Encrypt token and password.
             else {
@@ -124,7 +107,7 @@ class UserManagementController extends Controller
                         // Token is guarded, only made available to client during login and registration.
                         'token' => $user->user_token
                     ]
-                ]);
+                ], 200);
             }
         }
     }
@@ -152,7 +135,7 @@ class UserManagementController extends Controller
             "status" => "OK",
             "response" => "User data updated.",
             "message" => $user
-        ]);
+        ], 200);
     }
 
     /*
@@ -164,7 +147,7 @@ class UserManagementController extends Controller
                 "status" => "OK",
                 "response" => "Password change failed.",
                 "message" => "New password required to change password"
-            ]);
+            ], 400);
         }
         else {
             $user = User::where('user_token', $request->token)->first();
@@ -174,7 +157,7 @@ class UserManagementController extends Controller
                 "status" => "OK",
                 "response" => "Password reset successful.",
                 "message" => $user
-            ]);
+            ], 200);
         }
     }
 
@@ -189,7 +172,7 @@ class UserManagementController extends Controller
             "status" => "OK",
             "response" => "Deactivate success.",
             "message" => "User has been deactivated. To reactivate, simply log in with your original credentials."
-        ]);
+        ], 200);
     }
 
     public function logoutUser(Request $request) {
@@ -200,6 +183,6 @@ class UserManagementController extends Controller
             "status" => "OK",
             "response" => "Logged out.",
             "message" => "Logged out successfully."
-        ]);
+        ], 200);
     }
 }
