@@ -20,7 +20,7 @@ class CompanyController extends Controller
             'status' => "OK",
             "response" => Company::has('user')->with('user')->get(),
             "message" => "A list of companies with 1+ recruiters attending. A comprehensive list of companies can be found in the /api/v0.1/company/search route."
-        ]);
+        ], 200);
     }
 
     public function recruiters() {
@@ -28,7 +28,7 @@ class CompanyController extends Controller
             'status' => "OK",
             "response" => User::where('role', 2)->with('company')->get(),
             "message" => "A list of all recruiters attending."
-        ]);
+        ], 200);
     }
 
     public function search(Request $request) {
@@ -36,6 +36,6 @@ class CompanyController extends Controller
             'status' => "OK",
             "message" => "A list of all companies and current recruiter count. To be used for lightweight operations such as search.",
             "response" => Company::leftJoin('users', 'company.id', '=', 'users.company_id')->select('company.id', 'company.company_name', DB::raw('count(users.id) as recruiter_count'))->orderBy('company_name')->groupBy('company_name')->get(),
-        ]);
+        ], 200);
     }
 }

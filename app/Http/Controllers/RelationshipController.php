@@ -19,7 +19,7 @@ class RelationshipController extends Controller
             "status" => "OK",
             "response" => $this->generateListOutput($user),
             "message" => "List of all individuals connected."
-        ]);
+        ], 200);
     }
 
     public function addConnection(Request $request) {
@@ -28,7 +28,7 @@ class RelationshipController extends Controller
                 "status" => "ERROR",
                 "response" => "Invalid parameters.",
                 "message" => "Parameter connection_token required to connect two users."
-            ]);
+            ], 400);
         }
         else {
             $this_user = User::where('user_token', $request->token)->first();
@@ -38,7 +38,7 @@ class RelationshipController extends Controller
                     "status" => "OK",
                     "response" => "Add Connection failed.",
                     "message" => "One or more of the provided users does not exist."
-                ]);
+                ], 400);
             }
             else {
                 if($this_user->role == $connecting->role) {
@@ -46,7 +46,7 @@ class RelationshipController extends Controller
                         "status" => "OK",
                         "response" => "Add Connection failed.",
                         "message" => "At this time, we only support student / recruiter connections. Sorry!"
-                    ]);
+                    ], 400);
                 }
                 else {
                     // [Student, Recruiter]
@@ -66,7 +66,7 @@ class RelationshipController extends Controller
                             "status" => "OK",
                             "response" => "Already a connection.",
                             "message" => "You are already connected to this person! Call /api/v0.1/relationship/list to get an updated list of relationships for this user."
-                        ]);
+                        ], 200);
                     }
                     else {
                         DB::insert('insert into student_recruiter (student_id, recruiter_id) values (?, ?)', $result);
@@ -74,7 +74,7 @@ class RelationshipController extends Controller
                             "status" => "OK",
                             "response" => "Add Connection successful.",
                             "message" => "Users have been successfully connected! Call /api/v0.1/relationship/list to get an updated list of relationships for this user."
-                        ]);
+                        ], 200);
                     }
 
                     
