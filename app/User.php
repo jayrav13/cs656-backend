@@ -36,11 +36,11 @@ class User extends Model
     }
 
     public function recruitersConnected() {
-        return $this->belongsToMany('App\User', 'student_recruiter', 'student_id', 'recruiter_id');
+        return $this->belongsToMany('App\User', 'student_recruiter', 'student_id', 'recruiter_id')->with('company')->withTimestamps();
     }
 
     public function studentsConnected() {
-        return $this->belongsToMany('App\User', 'student_recruiter', 'recruiter_id', 'student_id');
+        return $this->belongsToMany('App\User', 'student_recruiter', 'recruiter_id', 'student_id')->with('company')->withTimestamps();
     }
 
 }

@@ -76,15 +76,12 @@ class RelationshipController extends Controller
                             "message" => "Users have been successfully connected! Call /api/v0.1/relationship/list to get an updated list of relationships for this user."
                         ], 200);
                     }
-
-                    
                 }
             }
         }
     }
 
     private function generateListOutput($user) {
-        $result = [];
         $connections = NULL;
         if($user->role == 2) {
             $connections = $user->studentsConnected;
@@ -92,9 +89,6 @@ class RelationshipController extends Controller
         else {
             $connections = $user->recruitersConnected;
         }
-        foreach($connections as $connection) {
-            array_push($result, User::with('company')->where('id', $connection->id)->first());
-        }
-        return $result;
+        return $connections;
     }
 }
