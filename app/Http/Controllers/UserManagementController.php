@@ -24,7 +24,7 @@ class UserManagementController extends Controller
                 "status" => "ERROR", 
                 "response" => "Login failed.",
                 "message" => "Required information (email, password) not provided."
-            ], 400);
+            ], 400)->header('Access-Control-Allow-Origin', '*');
         }
         else {
             $user = User::where('email', $request->email)->where('password', md5($request->password))->with('company')->first();
@@ -34,7 +34,7 @@ class UserManagementController extends Controller
                     "status" => "OK",
                     "response" => "Login failed.",
                     "message" => "Invalid credentials."
-                ], 400);
+                ], 400)->header('Access-Control-Allow-Origin', '*');
             }
             // Authentication success. Set new token and activate user.
             else {
@@ -49,7 +49,7 @@ class UserManagementController extends Controller
                         // Token is guarded, only made available to client during login and registration.
                         'token' => $user->user_token,
                     ]
-                ], 200);
+                ], 200)->header('Access-Control-Allow-Origin', '*');
             }
         }
     }
@@ -64,7 +64,7 @@ class UserManagementController extends Controller
                 "status" => "ERROR", 
                 "response" => "Registration failed.",
                 "message" => "Required information (name, email, password) not provided."
-            ], 400);
+            ], 400)->header('Access-Control-Allow-Origin', '*');
         }
         else {
             $user = User::where('email', $request->email)->first();
@@ -74,7 +74,7 @@ class UserManagementController extends Controller
                     "status" => "OK",
                     "response" => "Registration failed.",
                     "message" => "An account under this email address has already been created." 
-                ], 400);
+                ], 400)->header('Access-Control-Allow-Origin', '*');
             }
             // Creation success. Create user. Encrypt token and password.
             else {
@@ -107,7 +107,7 @@ class UserManagementController extends Controller
                         // Token is guarded, only made available to client during login and registration.
                         'token' => $user->user_token
                     ]
-                ], 200);
+                ], 200)->header('Access-Control-Allow-Origin', '*');
             }
         }
     }

@@ -6,6 +6,8 @@ use Closure;
 use Response;
 use App\User;
 
+use Illuminate\Http\RedirectResponse;
+
 class APIAuthentication
 {
     /**
@@ -22,7 +24,7 @@ class APIAuthentication
                 "status" => "ERROR",
                 "response" => "Authentication failed.",
                 "message" => "Please authenticate the user to use this route by including the \"token\" HTTP parameter with your request."
-            ], 400);
+            ], 400)->header('Access-Control-Allow-Origin', '*');
         }
         else {
             $user = User::where('user_token', $request->token)->first();
@@ -31,7 +33,7 @@ class APIAuthentication
                     "status" => "ERROR",
                     "response" => "User not found.",
                     "message" => "This route requires authentication of the user. Please try again with a valid token. Consider re-logging the user in to get a new token."
-                ], 400);
+                ], 400)->header('Access-Control-Allow-Origin', '*');
             }
             else {
                 $response = $next($request);

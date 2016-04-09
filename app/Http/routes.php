@@ -19,7 +19,7 @@ Route::group(['prefix' => 'api/v0.1'], function() {
 
     // Make sure the API is working.
     Route::get('/heartbeat', function() {
-        return Response::json(["response" => "OK"]);
+        return Response::json(["response" => "OK"])->header('Access-Control-Allow-Origin', '*');
     });
 
     Route::get('/docs', function(Request $request) {
