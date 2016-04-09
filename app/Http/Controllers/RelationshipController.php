@@ -87,10 +87,10 @@ class RelationshipController extends Controller
         $result = [];
         $connections = NULL;
         if($user->role == 2) {
-            $connections = $user->recruitersConnected;
+            $connections = $user->studentsConnected;
         }
         else {
-            $connections = $user->studentsConnected;
+            $connections = $user->recruitersConnected;
         }
         foreach($connections as $connection) {
             array_push($result, User::with('company')->where('id', $connection->id)->first());
