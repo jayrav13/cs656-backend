@@ -189,7 +189,7 @@ class UserManagementController extends Controller
     public function getUser(Request $request) {
         return Response::json([
             "status" => "OK",
-            "response" => User::where('user_token', $request->token)->first()
+            "response" => User::where('user_token', $request->token)->with('company')->with('recruitersConnected')->with('studentsConnected')->first()
         ], 200);
     }
 }
