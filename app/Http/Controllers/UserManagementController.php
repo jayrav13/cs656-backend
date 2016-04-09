@@ -185,4 +185,11 @@ class UserManagementController extends Controller
             "message" => "Logged out successfully."
         ], 200);
     }
+
+    public function getUser(Request $request) {
+        return Response::json([
+            "status" => "OK",
+            "response" => User::where('user_token', $request->token)->first()
+        ], 200);
+    }
 }

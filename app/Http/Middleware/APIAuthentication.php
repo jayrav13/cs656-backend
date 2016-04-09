@@ -22,7 +22,7 @@ class APIAuthentication
                 "status" => "ERROR",
                 "response" => "Authentication failed.",
                 "message" => "Please authenticate the user to use this route by including the \"token\" HTTP parameter with your request."
-            ]);
+            ], 400);
         }
         else {
             $user = User::where('user_token', $request->token)->first();
@@ -31,10 +31,11 @@ class APIAuthentication
                     "status" => "ERROR",
                     "response" => "User not found.",
                     "message" => "This route requires authentication of the user. Please try again with a valid token. Consider re-logging the user in to get a new token."
-                ]);
+                ], 400);
             }
             else {
-                return $next($request);
+                $response = $next($request);
+                return $response->header('Access-Control-Allow-Origin', '*');
             }
         }
         

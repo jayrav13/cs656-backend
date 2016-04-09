@@ -35,6 +35,7 @@ Route::group(['prefix' => 'api/v0.1'], function() {
             Route::patch('/password', "UserManagementController@changePassword");
             Route::post('/logout', "UserManagementController@logoutUser");
             Route::delete('/deactivate', "UserManagementController@deactivateUser");
+            Route::get('/get', "UserManagementController@getUser");
         });
     });
     

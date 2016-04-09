@@ -86,7 +86,7 @@ class RelationshipController extends Controller
     private function generateListOutput($user) {
         $result = [];
         $connections = NULL;
-        if($user->role = 2) {
+        if($user->role == 2) {
             $connections = $user->recruitersConnected;
         }
         else {
