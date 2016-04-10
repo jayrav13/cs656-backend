@@ -65,15 +65,15 @@ class RelationshipController extends Controller
                         return Response::json([
                             "status" => "OK",
                             "response" => "Already a connection.",
-                            "message" => "You are already connected to this person! Call /api/v0.1/relationship/list to get an updated list of relationships for this user."
-                        ], 200);
+                            "message" => "You are already connected to this person!"
+                        ], 400);
                     }
                     else {
                         DB::insert('insert into student_recruiter (student_id, recruiter_id) values (?, ?)', $result);
                         return Response::json([
                             "status" => "OK",
                             "response" => "Add Connection successful.",
-                            "message" => "Users have been successfully connected! Call /api/v0.1/relationship/list to get an updated list of relationships for this user.",
+                            "message" => "Users have been successfully connected!",
                             "users" => [
                                 "scanner" => $this_user,
                                 "scannee" => $connecting,
