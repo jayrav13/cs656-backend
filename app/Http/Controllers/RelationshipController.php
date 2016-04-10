@@ -31,8 +31,8 @@ class RelationshipController extends Controller
             ], 400);
         }
         else {
-            $this_user = User::where('user_token', $request->token)->first();
-            $connecting = User::where('user_token', $request->connection_token)->first();
+            $this_user = User::where('user_token', $request->token)->with('company')->first();
+            $connecting = User::where('user_token', $request->connection_token)->with('company')->first();
             if(!$this_user || !$connecting) {
                 return Response::json([
                     "status" => "OK",
@@ -73,7 +73,11 @@ class RelationshipController extends Controller
                         return Response::json([
                             "status" => "OK",
                             "response" => "Add Connection successful.",
-                            "message" => "Users have been successfully connected! Call /api/v0.1/relationship/list to get an updated list of relationships for this user."
+                            "message" => "Users have been successfully connected! Call /api/v0.1/relationship/list to get an updated list of relationships for this user.",
+                            "users" => [
+                                "scanner" => $this_user,
+                                "scannee" => $connecting,
+                            ]
                         ], 200);
                     }
                 }
