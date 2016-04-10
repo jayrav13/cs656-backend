@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\UserRelationship;
 use Response;
 use DB;
 
@@ -59,7 +60,7 @@ class RelationshipController extends Controller
                         $result = [$connecting->id, $this_user->id];
                     }
 
-                    $exists = DB::select("select * from student_recruiter where student_id = ? and recruiter_id = ?", $result);
+                    $exists = UserRelationship::where('student_id', $result[0])->where('recruiter_id', $result[1])->first();
 
                     if(count($exists) > 0) {
                         return Response::json([
@@ -69,7 +70,10 @@ class RelationshipController extends Controller
                         ], 400);
                     }
                     else {
-                        DB::insert('insert into student_recruiter (student_id, recruiter_id) values (?, ?)', $result);
+                        $rel = UserRelationship::create([
+                            "student_id" => $result[0],
+                            "recruiter_id" => $result[1]
+                        ]);
                         return Response::json([
                             "status" => "OK",
                             "response" => "Add Connection successful.",
@@ -77,6 +81,7 @@ class RelationshipController extends Controller
                             "users" => [
                                 "scanner" => $this_user,
                                 "scannee" => $connecting,
+                                "relationship" => $rel
                             ]
                         ], 200);
                     }
