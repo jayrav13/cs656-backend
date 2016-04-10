@@ -117,19 +117,21 @@ class UserManagementController extends Controller
      */
     public function editUser(Request $request) {
         $user = User::where('user_token', $request->token)->first();
-        $user->update($request->all());
-        $user->save();
+        $user->fill($request->all());
 
         // Check if company was provided.
         if($request->company_id) {
-            $user->company_id = $request->company_id;
             if($request->company_id > 0) {
                 $user->role = 2;
+                $user->company_id = $request->company_id;
             }
             else {
                 $user->role = 1;
+                $user->company_id = NULL;
             }
         }
+
+        $user->save();
 
         return Response::json([
             "status" => "OK",

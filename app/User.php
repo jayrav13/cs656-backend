@@ -27,10 +27,6 @@ class User extends Model
         'password', 'remember_token', 'user_token'
     ];
 
-    protected $guarded = [
-        'password', 'remember_token', 'user_token', 'id', 'created_at', 'updated_at'
-    ];
-
     public function company() {
         return $this->belongsTo('App\Company', 'company_id');
     }
