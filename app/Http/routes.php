@@ -38,6 +38,12 @@ Route::group(['prefix' => 'api/v0.1'], function() {
             Route::get('/get', "UserManagementController@getUser");
         });
     });
+
+    // Chat Routes
+    Route::group(['middleware' => ['customauth'], 'prefix' => 'chat'], function() {
+        Route::post('/addChat', "ChatController@addChat");
+        Route::get('/getChat', "ChatController@getChat");
+    });
     
 
     // Company Routes

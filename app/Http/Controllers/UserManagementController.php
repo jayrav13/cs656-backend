@@ -117,6 +117,19 @@ class UserManagementController extends Controller
      */
     public function editUser(Request $request) {
         $user = User::where('user_token', $request->token)->first();
+
+        if($request->email){
+            $user1 = User::where('email', $request->email)->first();
+            // Reject if Email is taken.
+            if($user1) {
+                return Response::json([
+                    "status" => "OK",
+                    "response" => "Update failed.",
+                    "message" => "An account under this email address has already been created."
+                ], 400);
+            }
+        }
+
         $user->fill($request->all());
 
         // Check if company was provided.

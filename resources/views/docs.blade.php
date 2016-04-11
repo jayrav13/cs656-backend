@@ -161,6 +161,37 @@
                 </div>
               </div>
             </div>
+            <!-- Chat -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Chat</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped">
+                  <tr>
+                    <th>Route</th>
+                    <th>HTTP Method</th>
+                    <th>Required Parameters</th>
+                    <th>Optional Parameters</th>
+                    <th>Protected?*</th>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/chat/addChat</td>
+                    <td>POST</td>
+                    <td>message<br/>from_user_id<br/>to_user_id</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/chat/getChat</td>
+                    <td>GET</td>
+                    <td>from_user_id<br/>to_user_id</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
 
             <!-- Companies -->
             <div class="panel panel-default">
