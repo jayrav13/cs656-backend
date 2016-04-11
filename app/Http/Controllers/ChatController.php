@@ -72,7 +72,17 @@ class ChatController extends Controller
         }
 
         //Insert the message into database
-        $chat = Chat::where('from_user_id', $request->from_user_id)->where('to_user_id', $request->to_user_id)->get();
+        $chat = Chat::where(function($query) use ($request)
+            			{
+                			$query->where('from_user_id', $request->from_user_id)
+                			->where('to_user_id', $request->to_user_id);
+            		})
+        			->orWhere(function($query) use ($request)
+            			{
+                			$query->where('from_user_id', $request->to_user_id)
+                      		->where('to_user_id', $request->from_user_id);
+            		})
+            		->get();
 
         //Reply
         return Response::json([
