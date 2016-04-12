@@ -189,6 +189,20 @@
                     <td>---</td>
                     <td>YES</td>
                   </tr>
+                   <tr>
+                    <td class="route">/api/v0.1/chat/deleteChat</td>
+                    <td>POST</td>
+                    <td>chat_id</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/chat/deleteConverstion</td>
+                    <td>POST</td>
+                    <td>from_user_id<br/>to_user_id</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
                 </table>
               </div>
             </div>

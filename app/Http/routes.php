@@ -43,6 +43,8 @@ Route::group(['prefix' => 'api/v0.1'], function() {
     Route::group(['middleware' => ['customauth'], 'prefix' => 'chat'], function() {
         Route::post('/addChat', "ChatController@addChat");
         Route::get('/getChat', "ChatController@getChat");
+        Route::post('/deleteChat', "ChatController@deleteChat");
+        Route::post('/deleteConverstion', "ChatController@deleteConverstion");
     });
     
 
