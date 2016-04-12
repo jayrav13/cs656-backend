@@ -127,7 +127,7 @@ class ChatController extends Controller
         if(!$request->from_user_id || !$request->to_user_id) {
             return Response::json([
                 "status" => "ERROR",
-                "response" => "Message fetching failed"
+                "response" => "Conversation fetching failed"
             ], 400);
         }
         $fromUser = User::where('id', $request->from_user_id)->first();
@@ -137,7 +137,7 @@ class ChatController extends Controller
         if(!$fromUser || !$toUser) {
             return Response::json([
                 "status" => "ERROR",
-                "response" => "Message fetching failed"
+                "response" => "Conversation fetching failed"
             ], 400);
         }
 
