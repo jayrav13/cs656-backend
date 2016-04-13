@@ -121,7 +121,7 @@ class ChatController extends Controller
         ], 200);
     }
     //Delete Conversation
-    public function deleteConverstion(Request $request) {
+    public function deleteConversation(Request $request) {
 
     	//Checks if required parameters are provided
         if(!$request->from_user_id || !$request->to_user_id) {

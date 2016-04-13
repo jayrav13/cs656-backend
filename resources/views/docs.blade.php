@@ -176,28 +176,28 @@
                     <th>Protected?*</th>
                   </tr>
                   <tr>
-                    <td class="route">/api/v0.1/chat/addChat</td>
+                    <td class="route">/api/v0.1/chat/add</td>
                     <td>POST</td>
                     <td>message<br/>from_user_id<br/>to_user_id</td>
                     <td>---</td>
                     <td>YES</td>
                   </tr>
                   <tr>
-                    <td class="route">/api/v0.1/chat/getChat</td>
+                    <td class="route">/api/v0.1/chat/get</td>
                     <td>GET</td>
                     <td>from_user_id<br/>to_user_id</td>
                     <td>---</td>
                     <td>YES</td>
                   </tr>
                    <tr>
-                    <td class="route">/api/v0.1/chat/deleteChat</td>
+                    <td class="route">/api/v0.1/chat/delete</td>
                     <td>POST</td>
                     <td>chat_id</td>
                     <td>---</td>
                     <td>YES</td>
                   </tr>
                   <tr>
-                    <td class="route">/api/v0.1/chat/deleteConverstion</td>
+                    <td class="route">/api/v0.1/chat/<br/>conversation/delete</td>
                     <td>POST</td>
                     <td>from_user_id<br/>to_user_id</td>
                     <td>---</td>
