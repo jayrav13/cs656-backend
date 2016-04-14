@@ -96,7 +96,10 @@ class UserManagementController extends Controller
                         $user->role = 1;
                     }
                 }
-
+                // New resume, not read for ML
+                else if($request->resume) {
+                	$user->status = 0;
+                }
                 // Save user, reply.
                 $user->save();
                 return Response::json([
@@ -137,13 +140,16 @@ class UserManagementController extends Controller
             if($request->company_id > 0) {
                 $user->role = 2;
                 $user->company_id = $request->company_id;
+                $user->status = 2;	// No resume for Recruiter
             }
             else {
                 $user->role = 1;
                 $user->company_id = NULL;
             }
         }
-
+        else if($request->resume) {
+        	$user->status = 0;
+        }
         $user->save();
 
         return Response::json([
