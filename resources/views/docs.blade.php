@@ -123,6 +123,13 @@
                     <td>NO</td>
                   </tr>
                   <tr>
+                    <td class="route">/api/v0.1/user/get</td>
+                    <td>GET</td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
                     <td class="route">/api/v0.1/user/edit</td>
                     <td>PUT</td>
                     <td>---</td>
