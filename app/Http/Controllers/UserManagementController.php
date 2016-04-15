@@ -135,17 +135,16 @@ class UserManagementController extends Controller
                 $user->company_id = NULL;
             }
         }
-        else if($request->resume) {
+        else if($request->resume && $user->company_id == NULL) {
         	$user->status = 0;
         }
         try {
-                $user->save();
-
-                return Response::json([
-                    "status" => "OK",
-                    "response" => "User data updated.",
-                    "message" => $user
-                ], 200);
+            $user->save();
+            return Response::json([
+                "status" => "OK",
+                "response" => "User data updated.",
+                "message" => $user
+            ], 200);
         }
         catch(QueryException $e) {
             return Response::json([

@@ -29,7 +29,7 @@ class AddUserColumnToChats extends Migration
     public function down()
     {
         //
-        Schema::table('users', function($table) {
+        Schema::table('chats', function($table) {
             $table->dropForeign('chats_from_user_id_foreign');
             $table->dropColumn('from_user_id');
             $table->dropForeign('chats_to_user_id_foreign');
