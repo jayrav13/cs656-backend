@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Database\QueryException;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Response;
@@ -121,18 +121,6 @@ class UserManagementController extends Controller
     public function editUser(Request $request) {
         $user = User::where('user_token', $request->token)->first();
 
-        if($request->email){
-            $user1 = User::where('email', $request->email)->first();
-            // Reject if Email is taken.
-            if($user1) {
-                return Response::json([
-                    "status" => "OK",
-                    "response" => "Update failed.",
-                    "message" => "An account under this email address has already been created."
-                ], 400);
-            }
-        }
-
         $user->fill($request->all());
 
         // Check if company was provided.
@@ -150,13 +138,22 @@ class UserManagementController extends Controller
         else if($request->resume) {
         	$user->status = 0;
         }
-        $user->save();
+        try {
+                $user->save();
 
-        return Response::json([
-            "status" => "OK",
-            "response" => "User data updated.",
-            "message" => $user
-        ], 200);
+                return Response::json([
+                    "status" => "OK",
+                    "response" => "User data updated.",
+                    "message" => $user
+                ], 200);
+        }
+        catch(QueryException $e) {
+            return Response::json([
+                "status" => "OK",
+                "response" => "Update failed.",
+                "message" => "An account under this email address has already been created."
+            ], 400);
+        }
     }
 
     /*
