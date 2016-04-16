@@ -290,7 +290,79 @@
                 </table>
               </div>
             </div>
-
+            <!-- Job -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Job</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped">
+                  <tr>
+                    <th>Route</th>
+                    <th>HTTP Method</th>
+                    <th>Required Parameters</th>
+                    <th>Optional Parameters</th>
+                    <th>Protected?*</th>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/job/primary<br/>/skills/add</td>
+                    <td>POST</td>
+                    <td>skill</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/job/primary<br/>/skills/get</td>
+                    <td>GET</td>
+                    <td></td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/job/secondary<br/>/skills/add</td>
+                    <td>POST</td>
+                    <td>skill</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/job/secondary<br/>/skills/get</td>
+                    <td>GET</td>
+                    <td></td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/job/platform<br/>/add</td>
+                    <td>POST</td>
+                    <td>platform</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/job/platform<br/>/get</td>
+                    <td>GET</td>
+                    <td></td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/job/additional<br/>/skills/add</td>
+                    <td>POST</td>
+                    <td>research_exp<br/>industry_exp<br/>leadership</td>
+                    <td>gpa_required<b>-</b><br/>gpa_threshold<b>-</b></td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/job/additional<br/>/skills/get</td>
+                    <td>GET</td>
+                    <td></td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
             <!-- Documentation Key -->
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -302,6 +374,8 @@
                   <strong>** Student vs Recruiter:</strong> A student is defined by anyone whose "role" field is 1. This can only be changed if the client changes this value to 2 via <code>/api/v0.1/user/register</code> or <code>/api/v0.1/user/edit</code> routes. Default value for all users is 1.<br />
                   <strong>+ connection_token:</strong> Currently, the API only supports student to recruiter connection. See above for what constitutes a student or a recruiter.<br />
                   <strong>++ company_id:</strong> Company ID will be made available through either the <code>/api/v0.1/company/companies</code> or <code>/api/v0.1/company/search</code> routes. The selection must be sent through as an ID.<br />
+                  <strong>- gpa_required, gpa_threshold:</strong> if gpa_required > 0, then gpa_threshold is required in the format of *.* [0.0 - 4.0] <br />
+
                   <h5 class="header">Resources</h5>
                   <ul>
                     <li>Check out <a href="http://jsonprettyprint.com" target="_BLANK">JSON Pretty Print</a> if the objects on the HTML page are hard to read.</li>

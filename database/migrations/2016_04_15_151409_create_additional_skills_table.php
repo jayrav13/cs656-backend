@@ -13,7 +13,7 @@ class CreateAdditionalSkillsTable extends Migration
     public function up()
     {
         Schema::create('additional_skills', function (Blueprint $table) {
-            $table->integer('recruiter_id')->unsigned();
+            $table->integer('recruiter_id')->unsigned()->unique();
             $table->foreign('recruiter_id')->references('id')->on('users'); 
             $table->integer('research_exp');
             $table->integer('industry_exp');

@@ -39,4 +39,20 @@ class User extends Model
         return $this->belongsToMany('App\User', 'student_recruiter', 'recruiter_id', 'student_id')->with('company')->withTimestamps();
     }
 
+    public function primarySkills() {
+        return $this->hasMany('App\PrimarySkills', 'recruiter_id');
+    }
+
+    public function secondarySkills() {
+        return $this->hasMany('App\SecondarySkills', 'recruiter_id');
+    }
+
+    public function platform() {
+        return $this->hasMany('App\Platform', 'recruiter_id');
+    }
+
+    public function additionalSkills() {
+        return $this->hasOne('App\AdditionalSkills', 'recruiter_id');
+    }
+
 }

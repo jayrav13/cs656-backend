@@ -60,6 +60,31 @@ Route::group(['prefix' => 'api/v0.1'], function() {
         Route::get('/list', "RelationshipController@connectionsList");
         Route::post('/add', "RelationshipController@addConnection");
     });
+
+    // Job Routes
+    Route::group(['middleware' => ['customauth'], 'prefix' => 'job'], function() {
+        
+        Route::group(['prefix' => 'primary/skills'], function() {
+            Route::post('/add', "JobController@addPrimarySkill");
+            Route::get('/get', "JobController@getPrimarySkills");
+            Route::post('/delete', "JobController@deletePrimarySkill");
+        });
+        Route::group(['prefix' => 'secondary/skills'], function() {
+            Route::post('/add', "JobController@addSecondarySkill");
+            Route::get('/get', "JobController@getSecondarySkills");
+            Route::post('/delete', "JobController@deleteSecondarySkill");
+        });
+        Route::group(['prefix' => 'platform'], function() {
+            Route::post('/add', "JobController@addPlatform");
+            Route::get('/get', "JobController@getPlatforms");
+            Route::post('/delete', "JobController@deletePlatform");
+        });
+        Route::group(['prefix' => 'additional/skills'], function() {
+            Route::post('/add', "JobController@addAdditionalSkill");
+            Route::get('/get', "JobController@getAdditionalSkill");
+            Route::post('/delete', "JobController@deleteAdditionalSkill");
+        });
+    });
 });
 
 
