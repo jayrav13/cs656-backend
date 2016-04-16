@@ -381,6 +381,13 @@
                     <td>---</td>
                     <td>YES</td>
                   </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/job/get</td>
+                    <td>GET</td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
                 </table>
               </div>
             </div>

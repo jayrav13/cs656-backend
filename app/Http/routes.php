@@ -82,8 +82,8 @@ Route::group(['prefix' => 'api/v0.1'], function() {
         Route::group(['prefix' => 'additional/skills'], function() {
             Route::post('/add', "JobController@addAdditionalSkill");
             Route::get('/get', "JobController@getAdditionalSkill");
-            Route::post('/delete', "JobController@deleteAdditionalSkill");
         });
+        Route::get('/get', "JobController@getJob");
     });
 });
 

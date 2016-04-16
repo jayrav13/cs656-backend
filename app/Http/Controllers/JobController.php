@@ -358,11 +358,30 @@ class JobController extends Controller
 
     // Retrive Job
 	public function getJob(Request $request) {
+        $job = User::where('user_token', $request->token)
+                    ->where('role', 2)
+                    ->with('primarySkills')
+                    ->with('secondarySkills')
+                    ->with('platform')
+                    ->with('additionalSkills')
+                    ->first();
+        if(!$job) {
+            return Response::json([
+                "status" => "ERROR",
+                "response" => "Get job description failed.",
+                "message" => "Users does not exist or is not allowed to retrive Job description"
+            ], 400);
+        }
 
+        // Reply
+        return Response::json([
+            "status" => "OK",
+            "response" => $job
+        ], 200);
     }
 
     // Delete Job
     public function deleteJob(Request $request) {
-
+        
     }    
 }
