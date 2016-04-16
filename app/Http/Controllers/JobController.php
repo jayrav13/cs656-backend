@@ -87,7 +87,25 @@ class JobController extends Controller
 
     // Delete Primary Skill
     public function deletePrimarySkill(Request $request) {
-
+        if(!$request->skill) {
+            return Response::json([
+                "status" => "ERROR",
+                "response" => "Invalid parameters."
+            ], 400);
+        }
+        $user = User::where('user_token', $request->token)->first();
+        if(!$user) {
+            return Response::json([
+                "status" => "ERROR",
+                "response" => "User doesn't exist"
+            ], 400);
+        }
+        $skill = PrimarySkills::where('recruiter_id',$user->id)->where('skill',$request->skill)->delete();
+        // Reply
+        return Response::json([
+            "status" => "OK",
+            "response" => $skill
+        ], 200);
     }
 
     // Add Secondary Skill
@@ -161,7 +179,25 @@ class JobController extends Controller
 
     // Delete Secondary Skill
     public function deleteSecondarySkill(Request $request) {
-
+        if(!$request->skill) {
+            return Response::json([
+                "status" => "ERROR",
+                "response" => "Invalid parameters."
+            ], 400);
+        }
+        $user = User::where('user_token', $request->token)->first();
+        if(!$user) {
+            return Response::json([
+                "status" => "ERROR",
+                "response" => "User doesn't exist"
+            ], 400);
+        }
+        $skill = SecondarySkills::where('recruiter_id',$user->id)->where('skill',$request->skill)->delete();
+        // Reply
+        return Response::json([
+            "status" => "OK",
+            "response" => $skill
+        ], 200);
     }
 
     // Add Platform
@@ -234,18 +270,30 @@ class JobController extends Controller
 
     // Delete Platform
     public function deletePlatform(Request $request) {
-
+        if(!$request->platform) {
+            return Response::json([
+                "status" => "ERROR",
+                "response" => "Invalid parameters."
+            ], 400);
+        }
+        $user = User::where('user_token', $request->token)->first();
+        if(!$user) {
+            return Response::json([
+                "status" => "ERROR",
+                "response" => "User doesn't exist"
+            ], 400);
+        }
+        $platform = Platform::where('recruiter_id',$user->id)->where('platform',$request->platform)->delete();
+        // Reply
+        return Response::json([
+            "status" => "OK",
+            "response" => $platform
+        ], 200);
     }
 
     // Add Platform
     public function addAdditionalSkill(Request $request) {
 
-		if(!$request->research_exp || !$request->industry_exp || !$request->leadership) {
-    		return Response::json([
-                "status" => "ERROR",
-                "response" => "Invalid parameters."
-            ], 400);
-    	}
 
     	if($request->gpa_required && $request->gpa_required > 0 && !$request->gpa_threshold) {
     		return Response::json([
@@ -262,40 +310,23 @@ class JobController extends Controller
                 "message" => "Users does not exist or is not allowed to add Job information."
             ], 400);
         }
-        try {
-        	$skill;
-        	// Insert skills into database
-        	if($request->gpa_required && $request->gpa_required > 0) {
-		        $skill = AdditionalSkills::create(array(
-		        		"recruiter_id" => $user->id,
-		        		"research_exp" => $request->research_exp,
-		        		"industry_exp" => $request->industry_exp,
-		        		"leadership" => $request->leadership,
-		        		"gpa_required" => 1,
-		        		"gpa_threshold" => $request->gpa_threshold
-		        	));
-		    }
-		    else {
-		        $skill = AdditionalSkills::create(array(
-		        		"recruiter_id" => $user->id,
-		        		"research_exp" => $request->research_exp,
-		        		"industry_exp" => $request->industry_exp,
-		        		"leadership" => $request->leadership
-		        	)); 
-		    }
-		    $skill->save();
-	        // Reply
-	        return Response::json([
-	            "status" => "OK",
-	            "response" => $skill
-	        ], 200);
+            
+        $skill = AdditionalSkills::where('recruiter_id', $user->id)->first();
+        if(!$skill) {
+            $skill = AdditionalSkills::create(array("recruiter_id" => $user->id));
+            $skill = AdditionalSkills::where('recruiter_id', $user->id)->first();
         }
-        catch(QueryException $e){
-			return Response::json([
-                "status" => "ERROR",
-                "response" => "One recruiter can add only Job."
-            ], 400);
-        }
+        $skill->fill($request->all());
+    	if($request->gpa_required && $request->gpa_required > 0)
+            $skill->gpa_required = 1;
+        else
+            $skill->gpa_threshold = '0.0';
+	    $skill->save();
+        // Reply
+        return Response::json([
+            "status" => "OK",
+            "response" => $skill
+        ], 200);
     }
 
     // Retrive Platforms
@@ -322,7 +353,7 @@ class JobController extends Controller
 
     // Delete Platform
     public function deleteAdditionalSkill(Request $request) {
-
+    
     }
 
     // Retrive Job

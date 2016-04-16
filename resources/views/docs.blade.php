@@ -314,7 +314,14 @@
                   <tr>
                     <td class="route">/api/v0.1/job/primary<br/>/skills/get</td>
                     <td>GET</td>
-                    <td></td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/job/primary<br/>/skills/delete</td>
+                    <td>POST</td>
+                    <td>skill</td>
                     <td>---</td>
                     <td>YES</td>
                   </tr>
@@ -328,7 +335,14 @@
                   <tr>
                     <td class="route">/api/v0.1/job/secondary<br/>/skills/get</td>
                     <td>GET</td>
-                    <td></td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/job/secondary<br/>/skills/delete</td>
+                    <td>POST</td>
+                    <td>skill</td>
                     <td>---</td>
                     <td>YES</td>
                   </tr>
@@ -342,21 +356,28 @@
                   <tr>
                     <td class="route">/api/v0.1/job/platform<br/>/get</td>
                     <td>GET</td>
-                    <td></td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/job/platform<br/>/delete</td>
+                    <td>POST</td>
+                    <td>platform</td>
                     <td>---</td>
                     <td>YES</td>
                   </tr>
                   <tr>
                     <td class="route">/api/v0.1/job/additional<br/>/skills/add</td>
                     <td>POST</td>
-                    <td>research_exp<br/>industry_exp<br/>leadership</td>
-                    <td>gpa_required<b>-</b><br/>gpa_threshold<b>-</b></td>
+                    <td>---</td>
+                    <td>research_exp<br/>industry_exp<br/>leadership<br/>gpa_required<b>-</b><br/>gpa_threshold<b>-</b></td>
                     <td>YES</td>
                   </tr>
                   <tr>
                     <td class="route">/api/v0.1/job/additional<br/>/skills/get</td>
                     <td>GET</td>
-                    <td></td>
+                    <td>---</td>
                     <td>---</td>
                     <td>YES</td>
                   </tr>
