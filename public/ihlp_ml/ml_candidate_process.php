@@ -4,10 +4,11 @@
 
 
 function ml_candidate(){
+	global $dbh1, $dbh2; // Global variables for database connections
 	$urid_rank=[];
 	$urid_c = 0;
 	// Check if any new candidate added or updates added 
-	$sql = 'SELECT id FROM users WHERE role=1 AND status!=2';
+	$sql = 'SELECT * FROM users WHERE role=1 AND status!=2';
 	$result = mysql_query($sql, $dbh1);
 	while($data = mysql_fetch_array($result)){
 		$s_id = $data['id'];
@@ -39,7 +40,7 @@ function ml_candidate(){
 		elseif($s_check==1){
 			// Check if student applied to new recruiters
 			$sql3 = 'SELECT recruiter_id FROM student_recruiter WHERE student_id='.$s_id;
-			$result3 = mysql_query($result3,$dbh1);
+			$result3 = mysql_query($sql3,$dbh1);
 			$rid_sr=[]; $rid_src = 0;
 			while($data3 = mysql_fetch_array($result3) ){
 				$rid_sr[$rid_src] = $data3['recruiter_id'];
@@ -47,7 +48,7 @@ function ml_candidate(){
 			}
 			
 			$sql4 = 'SELECT recruiter_id FROM ml_feature_vectors WHERE student_id='.$s_id;
-			$result4 = mysql_query($result4,$dbh2);
+			$result4 = mysql_query($sql4,$dbh2);
 			$rid_ml=[]; $rid_mlc = 0;
 			while($data4 = mysql_fetch_array($result4) ){
 				$rid_ml[$rid_mlc] = $data4['recruiter_id'];

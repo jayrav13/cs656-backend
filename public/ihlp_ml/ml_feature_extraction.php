@@ -3,12 +3,11 @@
 // Script to extract features for resume based on the job requirements posted by recruiter
 // Ajit Puthenputhussery
 
-
 function ml_extract_feature($r_id,$s_id){
-	
+	global $dbh1, $dbh2; // Global variables for database connections
 	// Extract resume in text format(php variable) from the resume pdf
 	$text = ml_extract_pdf_contents($s_id);
-	
+	// echo strtolower($text);
 	// Extract feature requirements for unique r_id
 	$p_skills = ml_extract_p_skills($r_id);
 	$s_skills = ml_extract_s_skills($r_id);
@@ -255,6 +254,9 @@ function ml_extract_feature($r_id,$s_id){
 		
 	}
 	
+
+	
+	
 	// Check if old feature vectors exist else create new feature vector
 	$sql = "SELECT feature FROM ml_feature_vectors WHERE recruiter_id=".$r_id." AND student_id=".$s_id;
 	$result = mysql_query($sql, $dbh2);
@@ -266,6 +268,9 @@ function ml_extract_feature($r_id,$s_id){
 	mysql_query($sql, $dbh2);	
 
 }// function
+
+// Unit Testing
+// ml_extract_feature(2, 4);
 
 //******************************** NEXT SECTION ***************************************************************
 

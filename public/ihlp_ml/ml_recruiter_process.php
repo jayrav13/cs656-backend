@@ -3,8 +3,8 @@
 // Script by Ajit Puthenputhussery
 
 
-function ml_recruiter()
-{
+function ml_recruiter(){
+	global $dbh1, $dbh2; // Global variables for database connections
 	// Check if any new recruiter added or updates added 
 	$sql = 'SELECT id FROM users WHERE role=2 AND status=0';
 	$result = mysql_query($sql, $dbh1);

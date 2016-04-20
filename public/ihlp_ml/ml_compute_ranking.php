@@ -4,6 +4,7 @@
 
 // Function for primary skills
 function ml_compute_ranking($r_id){
+	global $dbh1, $dbh2; // Global variables for database connections
 	$sql = 'SELECT student_id FROM student_recruiter WHERE recruiter_id='.$r_id;
 	$result = mysql_query($sql, $dbh1);
 	$rank_dist = [];
@@ -35,13 +36,14 @@ function ml_compute_ranking($r_id){
 	
 	// Sort $rank_dist array
 	arsort($rank_dist);
+	print_r($rank_dist);
 	$rank_dist_keys = array_keys($rank_dist);
 	
 	$rank_id = '';
 	for($i=0; $i<count($rank_dist_keys); $i++){
 		if($i==(count($rank_dist_keys)-1) )
-			$rank_id = $rank_id.$rank_dist_keys[i];
-		else $rank_id = $rank_id.$rank_dist_keys[i].',';
+			$rank_id = $rank_id.$rank_dist_keys[$i];
+		else $rank_id = $rank_id.$rank_dist_keys[$i].',';
 	}
 	
 	$sql2 = 'SELECT * FROM ml_rank WHERE recruiter_id='.$r_id; 

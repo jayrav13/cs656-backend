@@ -5,12 +5,13 @@
 
 // Function for primary skills
 function ml_extract_p_skills($r_id){
-	$sql = "SELCT skill FROM primary_skills WHERE recruiter_id=".$r_id;
+	global $dbh1, $dbh2; // Global variables for database connections
+	$sql = "SELECT skill FROM primary_skills WHERE recruiter_id=".$r_id;
 	$result = mysql_query($sql, $dbh1);
 	$count = mysql_num_rows($result);
 	$p_skills='';
 	for ($i=0; $i<$count; $i++){
-		$data = mysql_fetch_array($result))
+		$data = mysql_fetch_array($result);
 		if ($i == ($count-1) )
 			$p_skills = $p_skills.$data['skill'];
 		else $p_skills = $p_skills.$data['skill'].',';
@@ -22,12 +23,13 @@ function ml_extract_p_skills($r_id){
 
 // Function for secondary skills
 function ml_extract_s_skills($r_id){
-	$sql = "SELCT skill FROM secondary_skills WHERE recruiter_id=".$r_id;
+	global $dbh1, $dbh2; // Global variables for database connections
+	$sql = "SELECT skill FROM secondary_skills WHERE recruiter_id=".$r_id;
 	$result = mysql_query($sql, $dbh1);
 	$count = mysql_num_rows($result);
 	$s_skills='';
 	for ($i=0; $i<$count; $i++){
-		$data = mysql_fetch_array($result))
+		$data = mysql_fetch_array($result);
 		if ($i == ($count-1) )
 			$s_skills = $s_skills.$data['skill'];
 		else $s_skills = $s_skills.$data['skill'].',';
@@ -38,12 +40,13 @@ function ml_extract_s_skills($r_id){
 
 // Function for platforms
 function ml_extract_platforms($r_id){
-	$sql = "SELCT platform FROM platform WHERE recruiter_id=".$r_id;
+	global $dbh1, $dbh2; // Global variables for database connections
+	$sql = "SELECT platform FROM platform WHERE recruiter_id=".$r_id;
 	$result = mysql_query($sql, $dbh1);
 	$count = mysql_num_rows($result);
 	$platforms='';
 	for ($i=0; $i<$count; $i++){
-		$data = mysql_fetch_array($result))
+		$data = mysql_fetch_array($result);
 		if ($i == ($count-1) )
 			$platforms = $platforms.$data['platform'];
 		else $platforms = $platforms.$data['platform'].',';
@@ -54,9 +57,10 @@ function ml_extract_platforms($r_id){
 
 // Function for additional skills
 function ml_extract_a_skills($r_id){
-	$sql = "SELCT * FROM additional_skills WHERE recruiter_id=".$r_id;
+	global $dbh1, $dbh2; // Global variables for database connections
+	$sql = "SELECT * FROM additional_skills WHERE recruiter_id=".$r_id;
 	$result = mysql_query($sql, $dbh1);
-	$data = mysql_fetch_array($sql);
+	$data = mysql_fetch_array($result);
 	
 	$r_index = $data['research_exp'];
 	$e_index = $data['industry_exp'];

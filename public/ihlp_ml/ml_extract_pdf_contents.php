@@ -15,7 +15,8 @@ function ml_extract_pdf_contents($s_id){
 		$text = str_replace(array("\r\n", "\n", "\r"),'', $text); 
 	}
 	
-	echo utf8_decode(strtolower($text));
+	$text = utf8_decode($text);
+	$text = strtolower($text);
 	return $text;
 }
 

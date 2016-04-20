@@ -2,6 +2,9 @@
 // Main_ML_control.php   --> Main Control PHP File for the IHLP ML Part
 // Script by Ajit Puthenputhussery
 
+//Start time
+$time_start = microtime(true);
+
 // Include Files
 include 'connect.php'; //Database connect file
 include 'ml_download_resume.php'; //Download resume file
@@ -19,8 +22,12 @@ ml_recruiter();
 // Function to check new/updated candidates in system and start main ML functions  
 ml_candidate();
 
-
-
+//End time
+$time_end = microtime(true);
+//To get execution time in minutes
+$execution_time = ($time_end - $time_start)/60;
+//execution time of the script
+echo '<b>Total Execution Time:</b> '.$execution_time.' Mins';
 
 
 

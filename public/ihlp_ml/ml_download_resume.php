@@ -6,6 +6,9 @@
 function ml_download_resume($resume_url,$s_id){
 	$path = "resume_candidates/".$s_id.".pdf";
 
+	if (file_exists($path)){
+		unlink($path);
+	}
 	file_put_contents($path, file_get_contents($resume_url));
 
 	
