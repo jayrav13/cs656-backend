@@ -36,7 +36,6 @@ function ml_compute_ranking($r_id){
 	
 	// Sort $rank_dist array
 	arsort($rank_dist);
-	print_r($rank_dist);
 	$rank_dist_keys = array_keys($rank_dist);
 	
 	$rank_id = '';
