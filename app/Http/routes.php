@@ -85,6 +85,11 @@ Route::group(['prefix' => 'api/v0.1'], function() {
         });
         Route::get('/get', "JobController@getJob");
     });
+
+    // ML
+    Route::group(['middleware' => ['customauth'], 'prefix' => 'ml'], function() {
+        Route::get('/get', "MLController@getStudentList");
+    });
 });
 
 

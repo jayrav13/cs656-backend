@@ -391,6 +391,32 @@
                 </table>
               </div>
             </div>
+
+             <!-- ML -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">ML</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped">
+                  <tr>
+                    <th>Route</th>
+                    <th>HTTP Method</th>
+                    <th>Required Parameters</th>
+                    <th>Optional Parameters</th>
+                    <th>Protected?*</th>
+                  </tr>
+                  <tr>
+                    <td class="route">/api/v0.1/ml/get</td>
+                    <td>GET</td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>YES</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
             <!-- Documentation Key -->
             <div class="panel panel-default">
               <div class="panel-heading">

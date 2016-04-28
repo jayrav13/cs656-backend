@@ -64,6 +64,18 @@ return [
             'strict'    => false,
         ],
 
+        'ML_mysql' => [
+            'driver'    => 'mysql',
+            'host'      => env('DB_ML_HOST', 'localhost'),
+            'database'  => env('DB_ML_DATABASE', 'forge'),
+            'username'  => env('DB_ML_USERNAME', 'forge'),
+            'password'  => env('DB_ML_PASSWORD', ''),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
+
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),
