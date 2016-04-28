@@ -9,7 +9,12 @@ include('connect.php');
 $text = 'aadesh patel 10 heller court, edison, nj 08817 phone: (732) 646-1414 ? email: aadeshp95@gmail.com ? github: aadeshp education rutgers university bachelor of science in electrical/computer engineering and computer science ? ap exam: computer science (5) work experience wolfpak chief technology officer ? mobile application that allows users to share images and videos anonymously within their current geofence, and displays new brunswick, new jersey expected graduation: may 2017 new brunswick, new jersey march 2015 ? present the images and videos others posted around them in real-time (available in ios/android app store: wolfpak app) ? solely designed and built the rest api server in python using the django framework, which is hosted on amazon web services? elastic compute cloud ubuntu machines, with nginx proxy layers and a haproxy load balancer on top ? configured a postgresql database with a redis server to optimize performance of the server by heavily using caching ? independently developing the ios application with unique features such as: touch blurring, drawing, text, anonymity, and leaderboard ? managing a team of three other developers by having code reviews, assigning deadlines, and providing guidance ooyala professional services developer intern ? developing an apple tv application that retrieves data from a rest api server and allows users to watch live streams new york, new york september 2015 ? present and play different types of videos ? programmed a proxy layer, using python, that retrieves data from a source, alters the data to follow specific standards, logs all changes, and sends the altered data to a remote server. princeton, new jersey socialblood ios engineer may 2015 ? september 2015 ? solely developed a new ios application for socialblood, which is an online network of blood donors where a phone num- ber is linked to a blood type for easy emergency contact when a user is in need of a blood donor ? designed and integrated a backend as a service, called parse, for the mobile application fingertip tech eatontown, new jersey software engineer september 2014 ? november 2014 software engineer intern june 2014 ? august 2014 ? programmed high-end native and cross platform mobile applications for ios and android that queried rest api servers, ? aided in transitioning the company from a cross platform centered organization to a more native centered organization, developed using the ruby on rails framework which resulted in a significant increase in profit ? few from my selected project experience: ? on demand fitness app, developed for ios and android, that allows users to sign up for fitness sessions in real time ? parking rental app, developed as a cross platform application in c# using xamarin, that searches for parking lots within a defined radius around the user?s location, displays their pricing, and offers an option to rent in advance. image sharing app, developed for ios and android, that allows users to customize and share pictures ? personal projects property management platform august 2015 - present ? simplifies communication between a landlord and their tenants, by being able to post any maintenance/repair requests, pay rent, submit/view applications, and keep track of properties owned, all through the app ? designing and programming a real time server using the mqtt protocol to allow tenants and landlords to communicate with one another via messaging and maintenance requests in real time ? developing the server using the java spring framework, which uses the stripe api to handle all payment processing pushcpp ? push notification client for apple?s push notification services and google?s cloud messaging, written in c++ asynckit ? asynchronous library for ios, written in swift, that brings the concurrency concepts of futures and promises to ios august 2015 ? present august 2015 ? present technical skills languages: java, objective-c, swift, c++, c, python, go, ruby, c#, javascript, html, css database related: mysql, postgresql, sqlite, sql, pl/sql, mongodb ? frameworks/libraries: ruby on rails, django, django rest framework, spring framework, asp.net, aws ec2, s3 technologies: xcode, cocoapods, xamarin, git, unix, amazon web services ec2 and s3? networking: tcp, http, nginx, rest api, haproxy, websockets, mqtt ';
 
 //************************ ONLY FOR DEMO
-echo '<br>-------------------- DUMMY EXAMPLE -----------------------------<br>';
+// HTML body tag
+echo '<body style="background-color: #63798c; background-image: url(http://www.transparenttextures.com/patterns/45-degree-fabric-light.png);" >';
+
+echo '<div style="width:92%; padding:10px; font-family:Helvetica; font-size:16px; border:2px solid black;margin:2% auto; background-color: #fff;">';
+
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Recruiter Requirements Example</div>';
 echo 'Job Title: Lead Project Application  Manager <br>';
 echo 'Primary Skills : PHP, Python, SQL<br>';
 echo 'Secondary Skills : C, Java, Javascript <br>';
@@ -19,13 +24,17 @@ echo 'Industry Experience Index : 3<br>';
 echo 'Leadership Index : 4<br>';
 echo 'GPA check required : 1(Yes) <br>';
 echo 'GPA Threshold : 3.5';
-echo '<br>-------------------- DUMMY EXAMPLE -----------------------------<br>';
+echo '</div>';
 
-echo '<br>-------------------- Candidate 1 -- Aadesh Patel -----------------------------<br>';
-echo 'Resume ---- (in text variable)<br>';
+echo '<div style="width:92%; padding:10px; font-family:Helvetica; font-size:16px; border:2px solid black;margin:2% auto; background-color: #fff;">';
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Feature Extraction Component</div>';
+
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Candidate 2 </div>';
+
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step1 : Resume --- (in text variable) -- Candidate 2 </div>';
+
 echo $text;
-echo '<br>-------------------------------------------------<br>';
-echo '<br>--------------------- Unigram data with unigram score ----------------------------<br>';
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step 2 : Unigram data with unigram score -- Candidate 2  </div>';
 //********************************************
 
 
@@ -57,8 +66,8 @@ unset($words);
 $pattern = '/[a-z0-9_\-\+]+@[a-z0-9\-]+\.([a-z]{2,3})(?:\.[a-z]{2})?/i';
 // preg_match_all returns an associative array
 preg_match_all($pattern, $text, $matches);
-echo '<br>-------------------- Email id -----------------------------<br>';
-echo $email = $matches[0][0];
+// echo '<br>-------------------- Email id -----------------------------<br>';
+// echo $email = $matches[0][0];
 
 // Feature Score for primary skills --> 1 skill results in 5 features of feature vector  --> Scaling grade from 0-5
 // If skill found in resume 1 time --> 3
@@ -285,21 +294,30 @@ if($gpa_req==1){ // GPA check required
 //******************************** NEXT SECTION ***************************************************************
 
 // Print feature vector
-echo '<br>-----------------------------------------------------------------------------------------------------<br>';
-echo 'Feature Vector <br>';
-echo $feature.'<br>';
-echo 'Feature Vector Length<br>';
-echo strlen($feature).'<br>';
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step 3 : Dynamic Decision Trees </div>';
+echo '<div style="width:100%; text-align:center;"><img src="decn_tree.png" alt="Decision Tree" ></div>';
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step 4 : Compute Feature Vector  </div>';
+echo '<div style=" width:100%; height:45px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Feature Vector : '.$feature.' <br> Feature Vector Length : '.strlen($feature).'</div>';
+echo'</div>';
+
+echo '<div style="width:92%; padding:10px; font-family:Helvetica; font-size:16px; border:2px solid black;margin:2% auto; background-color: #fff;">';
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Feature Ranking Component</div>';
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step 1 : Compute Best Feature Vector  </div>';
+echo '<div style=" width:100%; height:45px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Feature Vector : 555555555555555555555555555555555555555555 <br> Feature Vector Length : '.strlen($feature).'</div>';
+
+echo '<div style=" width:100%; height:45px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step 2 : Compute cosine similarity score between computed feature vector and best vector  <br> Cosine Similarity Score :  cosine_sim(a, b) = (a·b) / (||a|| * ||b||)  </div>';
+
+
 
 // Convert feature vector string to array of integers
 $feature_array = array();
 for($i=0;$i<strlen($feature);$i++){
 	$feature_array[$i] = (int)$feature[$i];
 }
-echo 'Feature Vector (Array) <br>';
-print_r($feature_array);
-echo '<br> Feature Vector Array Length<br>';
-echo count($feature_array).'<br>';
+// echo 'Feature Vector (Array) <br>';
+// print_r($feature_array);
+// echo '<br> Feature Vector Array Length<br>';
+// echo count($feature_array).'<br>';
 
 // Create best array --> For Comparison
 $best_array = array();
@@ -310,9 +328,14 @@ for($i=0;$i<strlen($feature);$i++){
 // Calculate distance between feature vector and best vector based on Euclidean and Cosine similarity distance
 $edist = euclidean($feature_array, $best_array);
 $cdist = cosinus($feature_array, $best_array);
-echo '<br>-----------------------------------------------------------------------------------------------------<br>';
-echo '<br> Euclidean Distance (for ranking): '.$edist.'<br>';
-echo '<br> Cosine Similarity Distance (for ranking): '.$cdist.'<br>';
+// echo '<br>-----------------------------------------------------------------------------------------------------<br>';
+// echo '<br> Euclidean Distance (for ranking): '.$edist.'<br>';
+// echo '<br> Cosine Similarity Distance (for ranking): '.$cdist.'<br>';
+
+
+echo '<div style=" width:100%; height:45px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step 3: Rank based on cosine similarity score <br> Cosine similarity score : '.$cdist.' </div>';
+
+echo'</div>';
 
 // Function Implementation of Euclidean Distance and Cosine Similarity Distance
 

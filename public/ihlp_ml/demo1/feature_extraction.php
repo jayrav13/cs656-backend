@@ -9,7 +9,12 @@ include('connect.php');
 $text = 'jay h. ravaliya 27 hinchman avenue unit 2-c ¤? wayne, nj 07470 ¤? (973) 896-7552 ¤? jayrav13@gmail.com ¤? jayravaliya.com education new jersey institute of technology, college of computing sciences m.s., computer science, december 2016 (expected). gpa: 3.500. rutgers, the state university of new jersey, school of engineering b.s., biomedical engineering, january 2014. certificates introduction to computer science, harvardx via edx. july 2015. technical skills projects find my health, university of pennsylvania?s pennapps hackathon. september 2015 ? proficient: python, swift, sql, php, vba. familiar: c, java, objective-c, javascript, ruby, matlab. flask, cocoa touch, cocoapods, silex, bootstrap, jquery, laravel. sublime, xcode, vim, git, windows, os x, linux, unix, ms excel. sap business objects, tableau, oracle apex, sap r/3. languages: frameworks/libraries: software: enterprise software: research ?find my health? is an ios swift app that uses historical data on wait times at emergency rooms across the nation to help users with non-life-threating emergencies determine which hospital in their area will best help them see a doctor as fast as possible. led the backend development of the application, including page scraping for er wait times, constructing a restful api atop python?s flask microframework, and integrating google api?s to generate results. constructed ios views relevant to the backend application. ? ? our hack won venture for america?s ?best social innovation hack ? building something that matters? award! midloc, apple app store, google play. available on github. june 2015 ? ? ? user base grew to 100 users, invited an android developer to build the app for google play, anticipating future versions! built my first ios swift app that uses google?s places api to help users find places to meet their friends half way between two zip codes. iterated through code base 3 times, implementing improved approaches such as: parse sdk, ios mvc, cocoapods, restful api. industry experience april 2014 ? may 2015 supply chain analyst, pepsico ? pepsi beverages company championed a new role responsible for building data analytics tools that could support raw material procurement for north america. ? ? developed a series of automated, user-friendly excel vba applications that helped me execute my job function in 6 hours per week. applications continue to be used by sr. leadership (coo/vp-level), middle management, strategy teams and front-line employees. led the development of our term?s first algorithm-driven tools, which helped us identify $300,000+ cost savings for our team. served as a liaison between it and the business, assumed associate manager-level responsibilities within 6 months of joining. ? ? contract manufacturing planner, l?oréal usa ? piscataway manufacturing july 2013 ? april 2014 ? hired as an associate of the management development program, responsible for managing 3 contract manufacturers. ? ? led the production of 1 million units of l?oreal products per month across 3 global contract manufacturers. strengthened relationships with and developed process improvement strategies with both business partners and internal support teams. led software development in c++ and matlab for the laboratory of vision research and sensory-motor integration laboratory. undergraduate research associate, rutgers university center for cognitive science june 2010 ? july 2013 ? ? developed visual illusions using matlab?s psychtoolbox, such as the reverse phi or multiple attributes illusions. ? architected a mechanical apparatus, controlled with an arduino microprocessor, used to record motions from a human participant. ? advocated for undergraduate research by representing our lab at multiple conferences, recruiting students to join our lab and more! publications jillian nguyen, ushma madmujar, jay h. ravaliya, thomas v. papathomas, elizabeth b. torres. a novel, objective, statistical framework to characterize contributions of the sensory-motor system during perceptual state changes under a physical depth inversion illusion. psychological science. 2015. jillian nguyen, thomas v. papathomas, jay h. ravaliya, elizabeth b. torres. methods to explore the influence of top-down visual processes on motor behavior. journal for visualized experiments. 2013. leadership president, engineering governing council (egc) may 2010 ? may 2013 ? i was elected to serve as the student body president of the school of engineering, during which time i was responsible for leading 10 executive board members and 80 general members. collectively, we represented the 3,500 engineering students at the university-level. honors cap & skull senior honor society, rutgers university. initiated may 2012. tapped for membership as one of eighteen members during junior year. more information: capandskull.com.';
 
 //************************ ONLY FOR DEMO
-echo '<br>-------------------- DUMMY EXAMPLE -----------------------------<br>';
+// HTML body tag
+echo '<body style="background-color: #63798c; background-image: url(http://www.transparenttextures.com/patterns/45-degree-fabric-light.png);" >';
+
+echo '<div style="width:92%; padding:10px; font-family:Helvetica; font-size:16px; border:2px solid black;margin:2% auto; background-color: #fff;">';
+
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Recruiter Requirements Example</div>';
 echo 'Job Title: Lead Project Application  Manager <br>';
 echo 'Primary Skills : PHP, Python, SQL<br>';
 echo 'Secondary Skills : C, Java, Javascript <br>';
@@ -19,13 +24,19 @@ echo 'Industry Experience Index : 3<br>';
 echo 'Leadership Index : 4<br>';
 echo 'GPA check required : 1(Yes) <br>';
 echo 'GPA Threshold : 3.5';
-echo '<br>-------------------- DUMMY EXAMPLE -----------------------------<br>';
+echo '</div>';
 
-echo '<br>-------------------- Candidate 1 -- Jay Ravaliya -----------------------------<br>';
-echo 'Resume ---- (in text variable)<br>';
+echo '<div style="width:92%; padding:10px; font-family:Helvetica; font-size:16px; border:2px solid black;margin:2% auto; background-color: #fff;">';
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Feature Extraction Component</div>';
+
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Candidate 1 </div>';
+
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step1 : Resume --- (in text variable) -- Candidate 1 </div>';
+
 echo $text;
-echo '<br>-------------------------------------------------<br>';
-echo '<br>--------------------- Unigram data with unigram score ----------------------------<br>';
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step 2 : Unigram data with unigram score -- Candidate 1 </div>';
+
+
 //********************************************
 
 
@@ -57,8 +68,8 @@ unset($words);
 $pattern = '/[a-z0-9_\-\+]+@[a-z0-9\-]+\.([a-z]{2,3})(?:\.[a-z]{2})?/i';
 // preg_match_all returns an associative array
 preg_match_all($pattern, $text, $matches);
-echo '<br>-------------------- Email id -----------------------------<br>';
-echo $email = $matches[0][0];
+// echo '<br>-------------------- Email id -----------------------------<br>';
+// echo $email = $matches[0][0];
 
 // Feature Score for primary skills --> 1 skill results in 5 features of feature vector  --> Scaling grade from 0-5
 // If skill found in resume 1 time --> 3
@@ -285,21 +296,30 @@ if($gpa_req==1){ // GPA check required
 //******************************** NEXT SECTION ***************************************************************
 
 // Print feature vector
-echo '<br>-----------------------------------------------------------------------------------------------------<br>';
-echo 'Feature Vector <br>';
-echo $feature.'<br>';
-echo 'Feature Vector Length<br>';
-echo strlen($feature).'<br>';
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step 3 : Dynamic Decision Trees </div>';
+echo '<div style="width:100%; text-align:center;"><img src="decn_tree.png" alt="Decision Tree" ></div>';
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step 4 : Compute Feature Vector  </div>';
+echo '<div style=" width:100%; height:45px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Feature Vector : '.$feature.' <br> Feature Vector Length : '.strlen($feature).'</div>';
+echo'</div>';
+
+
+echo '<div style="width:92%; padding:10px; font-family:Helvetica; font-size:16px; border:2px solid black;margin:2% auto; background-color: #fff;">';
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Feature Ranking Component</div>';
+echo '<div style=" width:100%; height:30px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step 1 : Compute Best Feature Vector  </div>';
+echo '<div style=" width:100%; height:45px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Feature Vector : 555555555555555555555555555555555555555555 <br> Feature Vector Length : '.strlen($feature).'</div>';
+
+echo '<div style=" width:100%; height:45px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step 2 : Compute cosine similarity score between computed feature vector and best vector  <br> Cosine Similarity Score :  cosine_sim(a, b) = (a·b) / (||a|| * ||b||)  </div>';
+
 
 // Convert feature vector string to array of integers
 $feature_array = array();
 for($i=0;$i<strlen($feature);$i++){
 	$feature_array[$i] = (int)$feature[$i];
 }
-echo 'Feature Vector (Array) <br>';
-print_r($feature_array);
-echo '<br> Feature Vector Array Length<br>';
-echo count($feature_array).'<br>';
+// echo 'Feature Vector (Array) <br>';
+// print_r($feature_array);
+// echo '<br> Feature Vector Array Length<br>';
+// echo count($feature_array).'<br>';
 
 // Create best array --> For Comparison
 $best_array = array();
@@ -310,9 +330,13 @@ for($i=0;$i<strlen($feature);$i++){
 // Calculate distance between feature vector and best vector based on Euclidean and Cosine similarity distance
 $edist = euclidean($feature_array, $best_array);
 $cdist = cosinus($feature_array, $best_array);
-echo '<br>-----------------------------------------------------------------------------------------------------<br>';
-echo '<br> Euclidean Distance (for ranking): '.$edist.'<br>';
-echo '<br> Cosine Similarity Distance (for ranking): '.$cdist.'<br>';
+// echo '<br>-----------------------------------------------------------------------------------------------------<br>';
+// echo '<br> Euclidean Distance (for ranking): '.$edist.'<br>';
+// echo '<br> Cosine Similarity Distance (for ranking): '.$cdist.'<br>';
+
+echo '<div style=" width:100%; height:45px; padding:10px; margin:5px -10px; background-color:#1B5FA3; color:white; font-size:20px;">Step 3: Rank based on cosine similarity score <br> Cosine similarity score : '.$cdist.' </div>';
+
+echo'</div>';
 
 // Function Implementation of Euclidean Distance and Cosine Similarity Distance
 
