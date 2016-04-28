@@ -13,61 +13,107 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         // Full Seed
+        // Student
         DB::table('users')->insert([
             'name' => "Jay Ravaliya",
-            'email' => 'jhr10@njit.edu',
+            'email' => 'jhr3@njit.edu',
             'password' => md5('testing'),
             'active' => 1,
             'user_token' => md5(str_random(10) . time()),
-            'company_id' => 1,
             'twitter' => 'jayrav13',
             'linkedin' => 'jayrav13',
             'resume' => 'http://jayravaliya.com/assets/JayRavaliya_Resume.pdf',
             'website' => 'http://jayravaliya.com'
         ]);
         // Resume Missing
+        // Recruiter
         DB::table('users')->insert([
             'name' => "Saurabh Palaspagar",
-            'email' => 'svp@njit.edu',
+            'email' => 'svp44@njit.edu',
             'password' => md5('testing'),
             'active' => 1,
             'user_token' => md5(str_random(10) . time()),
             'company_id' => 1,
             'twitter' => 'svp44',
             'linkedin' => 'svp44',
-            'website' => 'http://google.com'
+            'website' => 'http://www.saurabhpalaspagar.com'
         ]);
-        // Website Missing
+        // Website and Resume Missing
+        // Student
         DB::table('users')->insert([
             'name' => "Dhruva Patel",
             'email' => 'dtp22@njit.edu',
             'password' => md5('testing'),
             'active' => 1,
             'user_token' => md5(str_random(10) . time()),
-            'company_id' => 3,
             'twitter' => 'dtp22',
             'linkedin' => 'dtp22',
-            'resume' => 'http://google.com.com'
         ]);
-        // Twitter Missing
+
+        // Recruiter
+        DB::table('users')->insert([
+            'name' => "Anish Vaghela",
+            'email' => "anish.vaghela@gmail.com",
+            'password' => md5('testing'),
+            'active' => 1,
+            'company_id' => 100,
+            'twitter' => 'AnishVaghela',
+            'linkedin' => 'anishvaghela',
+            'user_token' => md5(str_random(10) . time()),
+        ]);
+
+        // Twitter and Linkedin Missing
+        // Student
         DB::table('users')->insert([
             'name' => "Ajit Puthenputhussery",
             'email' => 'avp38@njit.edu',
             'password' => md5('testing'),
             'active' => 1,
             'user_token' => md5(str_random(10) . time()),
-            'company_id' => 4,
-            'linkedin' => 'avp38',
-            'resume' => 'http://google.com',
-            'website' => 'http://google.com'
+            'resume' => 'http://ajitvarghese.com/resume/resume.pdf',
+            'website' => 'http://ajitvarghese.com/',
         ]);
-        // All Optionals Missing
+        
+        // STUDENTS
         DB::table('users')->insert([
             'name' => "Nicholas Carbonara",
             'email' => 'ndc4@njit.edu',
             'password' => md5('testing'),
             'active' => 1,
             'user_token' => md5(str_random(10) . time()),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => "Neil Patel",
+            'email' => "neil1023@yahoo.com",
+            'password' => md5('testing'),
+            'active' => 1,
+            'user_token' => md5(str_random(10) . time()),
+            'twitter' => 'neilpatel1023',
+            'linkedin' => 'neil-patel-b05ab083',
+            'resume' => 'http://www.eden.rutgers.edu/~np366/Neil_Resume.pdf',
+            'website' => 'http://www.eden.rutgers.edu/~np366/'
+        ]);
+
+        DB::table('users')->insert([
+            'name' => "Sakib Jalal",
+            'email' => 'sakib.jalal@gmail.com',
+            'password' => md5('testing'),
+            'active' => 1,
+            'user_token' => md5(str_random(10) . time()),
+            'twitter' => 'sakib_jalal',
+            'linkedin' => 'sakibj',
+            'website' => 'http://sakib.github.io/'
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Varun Shah',
+            'email' => 'thevarunshah@gmail.com',
+            'password' => md5('testing'),
+            'active' => 1,
+            'user_token' => md5(str_random(10) . time()),
+            'linkedin' => 'thevarunshah',
+            'twitter' => 'thevarunshah'
         ]);
 
         // Set timeStamps

@@ -14,12 +14,16 @@ class PlatformsTableSeeder extends Seeder
 
 		DB::table('platform')->insert([
 			"platform" => "Linux",
-			"recruiter_id" => 2
+			"recruiter_id" => 4
 		]);
 		DB::table('platform')->insert([
 			"platform" => "Windows",
-			"recruiter_id" => 2
+			"recruiter_id" => 4
 		]);
+        DB::table('platform')->insert([
+            "platform" => "Mac OS X",
+            "recruiter_id" => 4
+        ]);
 
     }
 }

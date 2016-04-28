@@ -14,20 +14,24 @@ class PrimarySkillsTableSeeder extends Seeder
         //
         DB::table('primary_skills')->insert([
 			"skill" => "PHP",
-			"recruiter_id" => 2
+			"recruiter_id" => 4
         ]);
 		DB::table('primary_skills')->insert([
 			"skill" => "MySQL",
-			"recruiter_id" => 2
+			"recruiter_id" => 4
 		]);
 		DB::table('primary_skills')->insert([
 			"skill" => "Apache",
-			"recruiter_id" => 2
+			"recruiter_id" => 4
 		]);
 		DB::table('primary_skills')->insert([
 			"skill" => "REST",
-			"recruiter_id" => 2
+			"recruiter_id" => 4
 		]);
+        DB::table('primary_skills')->insert([
+            "skill" => "NGINX",
+            "recruiter_id" => 4
+        ]);
 
 	 }
 

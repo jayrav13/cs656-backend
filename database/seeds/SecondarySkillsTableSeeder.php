@@ -14,19 +14,27 @@ class SecondarySkillsTableSeeder extends Seeder
         //
 		DB::table('secondary_skills')->insert([
 			"skill" => "JavaScript",
-			"recruiter_id" => 2
+			"recruiter_id" => 4
 		]);
+
 		DB::table('secondary_skills')->insert([
 			"skill" => "jQuery",
-			"recruiter_id" => 2
+			"recruiter_id" => 4
 		]);
-		DB::table('secondary_skills')->insert([
-			"skill" => "NGINX",
-			"recruiter_id" => 2
-		]);
+
 		DB::table('secondary_skills')->insert([
 			"skill" => "d3.js",
-			"recruiter_id" => 2
+			"recruiter_id" => 4
 		]);
+
+        DB::table('secondary_skills')->insert([
+            "skill" => "Bootstrap",
+            "recruiter_id" => 4
+        ]);
+
+        DB::table('secondary_skills')->insert([
+            "skill" => "MaterializeCSS",
+            "recruiter_id" => 4
+        ]);
     }
 }
