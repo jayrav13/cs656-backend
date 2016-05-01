@@ -23,7 +23,8 @@ class UserTableSeeder extends Seeder
             'twitter' => 'jayrav13',
             'linkedin' => 'jayrav13',
             'resume' => 'http://jayravaliya.com/assets/JayRavaliya_Resume.pdf',
-            'website' => 'http://jayravaliya.com'
+            'website' => 'http://jayravaliya.com',
+            'role' => 1
         ]);
         // Resume Missing
         // Recruiter
@@ -36,7 +37,8 @@ class UserTableSeeder extends Seeder
             'company_id' => 1,
             'twitter' => 'svp44',
             'linkedin' => 'svp44',
-            'website' => 'http://www.saurabhpalaspagar.com'
+            'website' => 'http://www.saurabhpalaspagar.com',
+            'role' => 2
         ]);
         // Website and Resume Missing
         // Student
@@ -48,6 +50,7 @@ class UserTableSeeder extends Seeder
             'user_token' => md5(str_random(10) . time()),
             'twitter' => 'dtp22',
             'linkedin' => 'dtp22',
+            'role' => 1
         ]);
 
         // Recruiter
@@ -60,6 +63,7 @@ class UserTableSeeder extends Seeder
             'twitter' => 'AnishVaghela',
             'linkedin' => 'anishvaghela',
             'user_token' => md5(str_random(10) . time()),
+            'role' => 2
         ]);
 
         // Twitter and Linkedin Missing
@@ -72,6 +76,7 @@ class UserTableSeeder extends Seeder
             'user_token' => md5(str_random(10) . time()),
             'resume' => 'http://ajitvarghese.com/resume/resume.pdf',
             'website' => 'http://ajitvarghese.com/',
+            'role' => 1
         ]);
         
         // STUDENTS
@@ -81,6 +86,7 @@ class UserTableSeeder extends Seeder
             'password' => md5('testing'),
             'active' => 1,
             'user_token' => md5(str_random(10) . time()),
+            'role' => 1
         ]);
 
         DB::table('users')->insert([
@@ -92,7 +98,8 @@ class UserTableSeeder extends Seeder
             'twitter' => 'neilpatel1023',
             'linkedin' => 'neil-patel-b05ab083',
             'resume' => 'http://www.eden.rutgers.edu/~np366/Neil_Resume.pdf',
-            'website' => 'http://www.eden.rutgers.edu/~np366/'
+            'website' => 'http://www.eden.rutgers.edu/~np366/',
+            'role' => 1
         ]);
 
         DB::table('users')->insert([
@@ -103,7 +110,8 @@ class UserTableSeeder extends Seeder
             'user_token' => md5(str_random(10) . time()),
             'twitter' => 'sakib_jalal',
             'linkedin' => 'sakibj',
-            'website' => 'http://sakib.github.io/'
+            'website' => 'http://sakib.github.io/',
+            'role' => 1
         ]);
 
         DB::table('users')->insert([
@@ -113,7 +121,8 @@ class UserTableSeeder extends Seeder
             'active' => 1,
             'user_token' => md5(str_random(10) . time()),
             'linkedin' => 'thevarunshah',
-            'twitter' => 'thevarunshah'
+            'twitter' => 'thevarunshah',
+            'role' => 1
         ]);
 
         // Set timeStamps
